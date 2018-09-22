@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Model;
+﻿using Game.Item;
+using Game.Scripts.Model;
 
 namespace Assets.Game.Scripts.Interface
 {

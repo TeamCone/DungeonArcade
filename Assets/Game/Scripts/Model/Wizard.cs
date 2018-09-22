@@ -1,5 +1,6 @@
 ﻿using System.Runtime.ExceptionServices;
 using Assets.Game.Scripts.Interface;
+using Game.Item;
 using UnityEngine;
 
 namespace Game.Scripts.Model
