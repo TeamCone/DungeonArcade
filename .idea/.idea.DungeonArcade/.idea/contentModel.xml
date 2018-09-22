@@ -5,6 +5,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Game" t="Include">
+<<<<<<< HEAD
           <e p="Input" t="Include">
             <e p="GameInputController.cs" t="Include" />
           </e>
@@ -19,17 +20,30 @@
           </e>
           <e p="Utilities" t="Include">
             <e p="SingletonMonoBehaviour.cs" t="Include" />
+=======
+          <e p="Scripts" t="Include">
+            <e p="Interface" t="Include">
+              <e p="ICharacter.cs" t="Include" />
+              <e p="IItem.cs" t="Include" />
+            </e>
+>>>>>>> 3599b029e2c9e21a01ecc090d232801d56342693
           </e>
         </e>
       </e>
       <e p="DungeonArcade.sln" t="IncludeFlat" />
+<<<<<<< HEAD
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Temp" t="ExcludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
       </e>
+=======
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
+>>>>>>> 3599b029e2c9e21a01ecc090d232801d56342693
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_DungeonArcade.-1163146495.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_DungeonArcade.1268323568.00" t="ExcludeRecursive" />
   </component>
 </project>
