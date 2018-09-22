@@ -1,11 +1,12 @@
 ﻿using System;
+using Assets.Game.Scripts.Interface;
 using UnityEngine;
 
 namespace Game.PickItem
 {
-    public class PickItemController: MonoBehaviour
+    public class PickItemController: MonoBehaviour, IPickItem
     {
-        private EnumItem _item;
+        private IItem _item;
         private SpriteRenderer _spriteRenderer;
 
 
@@ -17,20 +18,22 @@ namespace Game.PickItem
         private void Start()
         {  
             //get random items
-            var itemCount = Enum.GetNames(typeof(EnumItem)).Length;
-            var randomItem = UnityEngine.Random.Range(0, itemCount);
-            _item = (EnumItem) randomItem;
+            _item = new Sword();
 
             //show item image
-            var itemSprite = Resources.Load<Sprite>("Item" + _item);
+            var itemSprite = Resources.Load<Sprite>(_item.Name);
             _spriteRenderer.sprite = itemSprite;
         }
         
         //return item and destroy
-        public EnumItem GetItem()
+        public IItem GetItem()
+        {
+            return _item;
+        }
+
+        public void DestroyItem()
         {
             Destroy(gameObject);
-            return _item;
         }
         
     }
