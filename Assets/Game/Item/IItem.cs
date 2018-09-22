@@ -1,4 +1,4 @@
-﻿namespace Assets.Game.Scripts.Interface
+﻿namespace Game.Item
 {
     public interface IItem
     {

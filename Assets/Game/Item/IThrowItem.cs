@@ -1,6 +1,6 @@
-﻿using Assets.Game.Scripts.Interface;
+﻿using Game.Player;
 
-namespace Game.PickItem
+namespace Game.Item
 {
     public interface IThrowItem
     {
@@ -8,5 +8,6 @@ namespace Game.PickItem
         void Throw();
         int GetDamage();
         void DestroyItem();
+        EnumPlayer EnumPlayer { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Assets.Game.Scripts.Interface;
-
-namespace Game.PickItem
+﻿namespace Game.Item
 {
     public class Sword: IItem
     {

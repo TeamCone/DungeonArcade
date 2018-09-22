@@ -8,7 +8,7 @@
           <e p="Input" t="Include">
             <e p="GameInputController.cs" t="Include" />
           </e>
-          <e p="PickItem" t="Include">
+          <e p="Item" t="Include">
             <e p="IItem.cs" t="Include" />
             <e p="IPickItem.cs" t="Include" />
             <e p="IThrowItem.cs" t="Include" />

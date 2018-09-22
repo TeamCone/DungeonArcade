@@ -1,5 +1,6 @@
 ﻿using Game.Player;
 using Game.Utilities;
+using UnityEngine;
 
 namespace Game.Input
 {
@@ -12,6 +13,8 @@ namespace Game.Input
             PlayerInput();
         }
 
+     
+
         public void SetPlayer(EnumPlayer enumPlayer, IPlayer player)
         {
             _player[(int)enumPlayer] = player;
@@ -19,28 +22,27 @@ namespace Game.Input
 
         private void PlayerInput()
         {
-            for (var i = 1; i <= 4; i++)
+            for (var i = 0; i <= 0; i++)
             {
                 NewPlayerJoinGame(i);
                     
-                if (_player[i]  == null)
+               if (_player[i]  == null)
                 {
-                    return;
+                    continue;
                 }
-				
-                var pVertical = UnityEngine.Input.GetAxisRaw("P" +i+"Vertical");
+//				
+                var pVertical = UnityEngine.Input.GetAxisRaw("P" +(i+1)+"Vertical");
                 _player[i].MoveVertical(pVertical);
 				
-                var pHorizontal = UnityEngine.Input.GetAxisRaw("P" +i+"Horizontal");
+                var pHorizontal = UnityEngine.Input.GetAxisRaw("P" +(i+1)+"Horizontal");
                 _player[i].MoveHorizontal(pHorizontal);
-				
 			
-                if (UnityEngine.Input.GetButtonDown("P" +i+"UseItem"))
+                if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"UseItem"))
                 {
                     _player[i].ThrowItem();
                 }
 
-                if (UnityEngine.Input.GetButtonDown("P" +i+"Jump"))
+                if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"Jump"))
                 {
                     _player[i].Jump();
                 }
@@ -57,7 +59,7 @@ namespace Game.Input
                 return;
             }
             
-            if (UnityEngine.Input.GetButtonDown("P" +playerId+"Submit"))
+            if (UnityEngine.Input.GetButtonDown("P" +(playerId + 1)+"Submit"))
             {
                
             }

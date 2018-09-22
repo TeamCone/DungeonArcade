@@ -1,8 +1,6 @@
-﻿using System;
-using Assets.Game.Scripts.Interface;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game.PickItem
+namespace Game.Item
 {
     public class PickItemController: MonoBehaviour, IPickItem
     {
@@ -21,7 +19,7 @@ namespace Game.PickItem
             _item = new Sword();
 
             //show item image
-            var itemSprite = Resources.Load<Sprite>(_item.Name);
+            var itemSprite = Resources.Load<Sprite>("PickItem" +_item.Name);
             _spriteRenderer.sprite = itemSprite;
         }
         

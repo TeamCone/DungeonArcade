@@ -1,7 +1,7 @@
-﻿using Assets.Game.Scripts.Interface;
+﻿using Game.Player;
 using UnityEngine;
 
-namespace Game.PickItem
+namespace Game.Item
 {
     public class ThrowItemController: MonoBehaviour, IThrowItem
     {
@@ -14,17 +14,20 @@ namespace Game.PickItem
 
         public void Throw()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("throwing " +_item);
         }
 
         public int GetDamage()
         {
             return _item.Damage;
         }
+        
 
         public void DestroyItem()
         {
             Destroy(gameObject);
         }
+
+        public EnumPlayer EnumPlayer { get; set; }
     }
 }
