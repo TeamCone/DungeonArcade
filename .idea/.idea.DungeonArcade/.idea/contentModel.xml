@@ -15,6 +15,8 @@
               <e p="PlayerController.cs" t="Include" />
             </e>
             <e p="Utilities" t="Include">
+              <e p="PrefabCreator.cs" t="Include" />
+              <e p="ResourceGetter.cs" t="Include" />
               <e p="SingletonMonoBehaviour.cs" t="Include" />
             </e>
           </e>

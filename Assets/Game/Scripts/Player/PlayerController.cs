@@ -10,10 +10,21 @@ namespace Game.Player
         private float _horizontalMovement;
         
         [SerializeField]
-        private float _moveSpeed = 5;
+        private float _moveSpeed = 5f;
         [SerializeField]
-        private float _jumpHeight = 10;
+        private float _jumpHeight = 10f;
+        [SerializeField]
+        private float _springJumpHeight = 20f;
+        
         private EnumPlayer _enumPlayer;
+        
+        [SerializeField]private LayerMask _springLayerMask;
+        [SerializeField]private LayerMask _groundLayerMask;
+        [SerializeField] private Transform _groundCheck;
+        private Animator _animator;
+        private bool _isGrounded;
+        private bool _isSpringJump;
+
 
 
         private void Start()
@@ -34,15 +45,27 @@ namespace Game.Player
             _enumPlayer = enumPlayer;
         }
 
-        
+
         private void FixedUpdate()
         {
             _rigidbody2D.velocity = new Vector3(_horizontalMovement, _rigidbody2D.velocity.y);
-        }
+            
+            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayerMask);
+            _isSpringJump = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _springLayerMask);
 
+            if (_isSpringJump)
+            {
+                _rigidbody2D.velocity = new Vector3(_horizontalMovement, _springJumpHeight );
+            }
+        }
      
         public void Jump()
         {
+            if (_isGrounded == false)
+            {
+                return;
+            }
+            
             _rigidbody2D.velocity = new Vector3(_horizontalMovement, _jumpHeight);
         }
 
@@ -54,8 +77,30 @@ namespace Game.Player
         public void MoveHorizontal(float value)
         {
             _horizontalMovement = value * _moveSpeed;
+            FaceCharacter(value);
+
+        }
+
+        private void FaceCharacter(float value)
+        {
+            if (value > 0)
+            {
+                _transform.localScale = new Vector3(1,_transform.localScale.y,_transform.localScale.z);
+            }
+            else if (value < 0)
+            {
+                _transform.localScale = new Vector3(-1,_transform.localScale.y,_transform.localScale.z);
+            }
+            else
+            {
+                _transform.localScale = new Vector3(_transform.localScale.x,_transform.localScale.z,_transform.localScale.z);
+            }
+            
+            
+            
            
         }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {
