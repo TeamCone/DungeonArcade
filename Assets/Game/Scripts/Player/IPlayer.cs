@@ -3,8 +3,7 @@
     public interface IPlayer
     {
         void Jump();
-        void ThrowItem();
+        void UseItem();
         void MoveHorizontal(float value);
-        void MoveVertical(float value);
     }
 }

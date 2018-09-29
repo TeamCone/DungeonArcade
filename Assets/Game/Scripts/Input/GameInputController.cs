@@ -30,16 +30,13 @@ namespace Game.Input
                 {
                     continue;
                 }
-//				
-                var pVertical = UnityEngine.Input.GetAxisRaw("P" +(i+1)+"Vertical");
-                _player[i].MoveVertical(pVertical);
 				
                 var pHorizontal = UnityEngine.Input.GetAxisRaw("P" +(i+1)+"Horizontal");
                 _player[i].MoveHorizontal(pHorizontal);
 			
                 if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"UseItem"))
                 {
-                    _player[i].ThrowItem();
+                    _player[i].UseItem();
                 }
 
                 if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"Jump"))
