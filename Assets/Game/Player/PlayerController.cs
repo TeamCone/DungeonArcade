@@ -9,7 +9,7 @@ namespace Game.Player
 {
     public class PlayerController: MonoBehaviour, IPlayer
     {
-        private Rigidbody2D _rigidbody2D;
+        private Rigidbody _rigidbody;
         private Transform _transform;
         private float _horizontalMovement;
         private float _verticalMovement;
@@ -25,7 +25,7 @@ namespace Game.Player
 
         private void Start()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _rigidbody = GetComponent<Rigidbody>();
             _transform = GetComponent<Transform>();
 
             TEST();
@@ -41,7 +41,7 @@ namespace Game.Player
         
         private void FixedUpdate()
         {
-            _rigidbody2D.velocity = new Vector3(_horizontalMovement, _verticalMovement);
+            _rigidbody.velocity = new Vector3(_horizontalMovement, _rigidbody.velocity.y , _verticalMovement);
         }
 
         public void SetPlayer(EnumPlayer enumPlayer)
@@ -56,7 +56,7 @@ namespace Game.Player
 
         public void Jump()
         {
-            _rigidbody2D.velocity = new Vector3(_horizontalMovement, _jumpHeight);
+            _rigidbody.velocity = new Vector3(_horizontalMovement, _jumpHeight , _verticalMovement);
         }
 
         public void ThrowItem()
@@ -80,7 +80,7 @@ namespace Game.Player
             _verticalMovement = value * _moveSpeed;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("PickItem"))
             {
