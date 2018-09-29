@@ -8,11 +8,4 @@ namespace Game.Player
         void UseItem();
         void MoveHorizontal(float value);
     }
-
-    public enum EnumState
-    {
-        DEFAULT,
-        KNOCKED_DOWN,
-        INVULNERABLE
-    }
 }

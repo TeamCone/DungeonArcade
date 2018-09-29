@@ -1,20 +1,27 @@
+using System;
 using Game.Player;
 
 namespace Game.Scripts
 {
     public class Character : ICharacter
     {
-        private EnumState _state;
+        private EnumPlayerState _playerState;
+        private readonly EnumPlayer _player;
         private IItem _item;
-        
-        public EnumState CurrentState()
+
+        public Character(EnumPlayer player)
         {
-            return _state;
+            _player = player;
+        }
+        
+        public EnumPlayerState CurrentState()
+        {
+            return _playerState;
         }
 
-        public void SetState(EnumState state)
+        public void SetState(EnumPlayerState playerState)
         {
-            _state = state;
+            _playerState = playerState;
         }
 
         public IItem CurrentItem()
@@ -29,20 +36,26 @@ namespace Game.Scripts
 
         public void ThrowItem()
         {
-            if (_item.IsThrowable() == false)
+            if (_item?.IsThrowable() == false)
             {
                 return;
             }
             _item = null;
         }
 
-        public void CharacterHit()
+        public void CharacterHit(IItem item)
         {
-            if (_state == EnumState.INVULNERABLE)
+            if (_playerState == EnumPlayerState.INVULNERABLE)
             {
                 return;
             }
-            _state = EnumState.KNOCKED_DOWN;
+
+            if (item.GetOrigin() == _player)
+            {
+                return;
+            }
+            
+            _playerState = EnumPlayerState.KNOCKED_DOWN;
             _item = null;
         }
     }
