@@ -4,11 +4,11 @@ namespace Game.Scripts
 {
     public interface ICharacter
     {
-        EnumState CurrentState();
-        void SetState(EnumState state);
+        EnumPlayerState CurrentState();
+        void SetState(EnumPlayerState playerState);
         IItem CurrentItem();
         void PickUpItem(IItem item);
         void ThrowItem();
-        void CharacterHit();
+        void CharacterHit(IItem item);
     }
 }
