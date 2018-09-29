@@ -83,21 +83,21 @@ namespace Game.Player
 
         private void FaceCharacter(float value)
         {
+
+            var xScale = _transform.localScale.x;
+         
             if (value > 0)
             {
-                _transform.localScale = new Vector3(1,_transform.localScale.y,_transform.localScale.z);
+                xScale = 1;
             }
-            else if (value < 0)
+            
+            if (value < 0)
             {
-                _transform.localScale = new Vector3(-1,_transform.localScale.y,_transform.localScale.z);
-            }
-            else
-            {
-                _transform.localScale = new Vector3(_transform.localScale.x,_transform.localScale.z,_transform.localScale.z);
+                xScale = -1;
             }
             
             
-            
+            _transform.localScale = new Vector3(xScale,_transform.localScale.z,_transform.localScale.z);
            
         }
         

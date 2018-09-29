@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: dungeon-conveyor-start_1
+  m_Name: pedestal
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300002, guid: d2f0f51469a0a4caab1118e43646eb8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89e296838a80d4c39aa36be71420febf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
