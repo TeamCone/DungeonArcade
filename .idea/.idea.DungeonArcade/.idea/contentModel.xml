@@ -6,15 +6,24 @@
       <e p="Assets" t="Include">
         <e p="Game" t="Include">
           <e p="Scripts" t="Include">
+            <e p="Enums" t="Include">
+              <e p="EnumGameState.cs" t="Include" />
+              <e p="EnumItemState.cs" t="Include" />
+              <e p="EnumPlayer.cs" t="Include" />
+              <e p="EnumPlayerState.cs" t="Include" />
+            </e>
             <e p="Input" t="Include">
               <e p="GameInputController.cs" t="Include" />
+            </e>
+            <e p="Items" t="Include">
+              <e p="IItem.cs" t="Include" />
+              <e p="NonThrowableItem.cs" t="Include" />
+              <e p="ThrowableItem.cs" t="Include" />
             </e>
             <e p="Player" t="Include">
               <e p="Character.cs" t="Include" />
               <e p="CharacterTest.cs" t="Include" />
-              <e p="EnumPlayer.cs" t="Include" />
               <e p="ICharacter.cs" t="Include" />
-              <e p="IItem.cs" t="Include" />
               <e p="IPlayer.cs" t="Include" />
               <e p="PlayerController.cs" t="Include" />
             </e>
