@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: ConveyorStartTile
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 21300000, guid: d2f0f51469a0a4caab1118e43646eb8b, type: 3}
-  - {fileID: 21300002, guid: d2f0f51469a0a4caab1118e43646eb8b, type: 3}
-  - {fileID: 21300004, guid: d2f0f51469a0a4caab1118e43646eb8b, type: 3}
+  - {fileID: 21300000, guid: 74d394950e64b442f95606f52677ea9d, type: 3}
+  - {fileID: 21300002, guid: 74d394950e64b442f95606f52677ea9d, type: 3}
+  - {fileID: 21300004, guid: 74d394950e64b442f95606f52677ea9d, type: 3}
   m_AnimationSpeed: 15
   m_AnimationStartTime: 0
