@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b42b8b08101654662a432ab0df59cd34
+guid: d6bf7ef080c4e4dae9d95475a3c326f6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dungeon-conveyor-body_0
-    21300002: dungeon-conveyor-body_1
-    21300004: dungeon-conveyor-body_2
+    21300000: conveyor-center_0
+    21300002: conveyor-center_1
+    21300004: conveyor-center_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -39,16 +39,16 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,7 +66,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,18 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -99,7 +88,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,7 +98,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dungeon-conveyor-body_0
+      name: conveyor-center_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,19 +106,19 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d2d208a7335246caa9ec5a03a24c3a2
+      spriteID: a45d323f6b3af4b33bba4e332efbd3fb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon-conveyor-body_1
+      name: conveyor-center_1
       rect:
         serializedVersion: 2
         x: 16
@@ -137,19 +126,19 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f51ce755818043d4975c394b7be8806
+      spriteID: b6ef3ce9a9f8f4dffba99c1a6591aa28
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon-conveyor-body_2
+      name: conveyor-center_2
       rect:
         serializedVersion: 2
         x: 32
@@ -157,13 +146,13 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ef5f2605244439ea2c8542c9f6e9d5
+      spriteID: 53399064885b34a85857ebd3ba505023
       vertices: []
       indices: 
       edges: []
@@ -171,7 +160,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1143b91c4fd9d4437b8d43c1a0e36935
+    spriteID: c27a9bf58a32940c3a4b650d8234d422
     vertices: []
     indices: 
     edges: []
