@@ -25,6 +25,7 @@ namespace Game.Player
        
         private bool _isGrounded;
         private bool _isSpringJump;
+        private bool _isOnConveyer;
 
 
         private const string AnimatorIsGrounded = "IsGrounded";
@@ -52,10 +53,13 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
-            _rigidbody2D.velocity = new Vector3(_horizontalMovement, _rigidbody2D.velocity.y);
-            _animator.SetFloat(AnimatorRun, Mathf.Abs(_horizontalMovement));
             _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayerMask);
             _animator.SetBool(AnimatorIsGrounded, _isGrounded);
+            
+            _rigidbody2D.velocity = new Vector3(_horizontalMovement, _rigidbody2D.velocity.y);
+            
+            _animator.SetFloat(AnimatorRun, Mathf.Abs(_horizontalMovement));
+          
             
             _isSpringJump = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _springLayerMask);
 
@@ -73,7 +77,7 @@ namespace Game.Player
                 return;
             }
             
-            _rigidbody2D.velocity = new Vector3(_horizontalMovement, _jumpHeight);
+            _rigidbody2D.velocity = new Vector3(_rigidbody2D.velocity.x, _jumpHeight);
             _animator.SetTrigger(AnimatorJump);
         }
 
@@ -106,13 +110,18 @@ namespace Game.Player
             
             
             _transform.localScale = new Vector3(xScale,_transform.localScale.z,_transform.localScale.z);
+        }
+
+  
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
            
         }
-        
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnCollisionExit2D(Collision2D other)
         {
-        
+         
             
         }
     }

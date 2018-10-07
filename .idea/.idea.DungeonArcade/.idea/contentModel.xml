@@ -29,6 +29,7 @@
             </e>
             <e p="Utilities" t="Include">
               <e p="AnimatedTile.cs" t="Include" />
+              <e p="Conveyor.cs" t="Include" />
               <e p="PrefabCreator.cs" t="Include" />
               <e p="ResourceGetter.cs" t="Include" />
               <e p="SingletonMonoBehaviour.cs" t="Include" />
