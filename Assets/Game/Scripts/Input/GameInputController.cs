@@ -6,7 +6,7 @@ namespace Game.Input
 {
     public class GameInputController : SingletonMonoBehaviour<GameInputController>
     {
-        private readonly IPlayer[] _player = new IPlayer[4];
+        private IPlayer[] _player = new IPlayer[4];
 		
         private void Update()
         {
@@ -22,21 +22,23 @@ namespace Game.Input
 
         private void PlayerInput()
         {
-            for (var i = 0; i <= 0; i++)
+          
+            for (var i = 0; i < _player.Length; i++)
             {
                 NewPlayerJoinGame(i);
                     
-               if (_player[i]  == null)
+                if (_player[i]  == null)
                 {
                     continue;
                 }
+                
 				
                 var pHorizontal = UnityEngine.Input.GetAxisRaw("P" +(i+1)+"Horizontal");
                 _player[i].MoveHorizontal(pHorizontal);
 			
                 if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"UseItem"))
                 {
-                    _player[i].UseItem();
+                    _player[i].ThrowItem();
                 }
 
                 if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"Jump"))
