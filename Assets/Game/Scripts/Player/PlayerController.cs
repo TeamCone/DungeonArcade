@@ -1,4 +1,5 @@
 ﻿using Game.Input;
+using Game.Scripts;
 using UnityEngine;
 
 namespace Game.Player
@@ -7,6 +8,7 @@ namespace Game.Player
     {
         private Rigidbody2D _rigidbody2D;
         private Transform _transform;
+        private Animator _animator;
         private float _horizontalMovement;
         
         [SerializeField]
@@ -15,31 +17,40 @@ namespace Game.Player
         private float _jumpHeight = 10f;
         [SerializeField]
         private float _springJumpHeight = 20f;
-        
+        [SerializeField]
         private EnumPlayer _enumPlayer;
+
+        private ICharacter _character;
         
         [SerializeField]private LayerMask _springLayerMask;
         [SerializeField]private LayerMask _groundLayerMask;
         [SerializeField] private Transform _groundCheck;
-        private Animator _animator;
+       
         private bool _isGrounded;
         private bool _isSpringJump;
+        private bool _isOnConveyer;
 
 
+        private const string AnimatorIsGrounded = "IsGrounded";
+        private const string AnimatorRun = "Run";
+        private const string AnimatorJump = "Jump";
+        private const string AnimatorThrow = "Throw";
+        private const string AnimatorHit = "Hit";
+        private const string AnimatorIsDead = "IsDead";
+        private const string AnimatorHasItem = "HasItem";
 
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _transform = GetComponent<Transform>();
-            TEST();
+            _animator = GetComponent<Animator>();
+            
+            GameInputController.Instance.SetPlayer(_enumPlayer, this);
+            
+            //Create Character Object
+            _character = new Character(_enumPlayer);
         }
 
-        private void TEST()
-        {
-            SetPlayer(EnumPlayer.Player1);
-            GameInputController.Instance.SetPlayer(_enumPlayer, this);
-        }
-        
         public void SetPlayer(EnumPlayer enumPlayer)
         {
             _enumPlayer = enumPlayer;
@@ -48,14 +59,20 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
+            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayerMask);
+            _animator.SetBool(AnimatorIsGrounded, _isGrounded);
+            
             _rigidbody2D.velocity = new Vector3(_horizontalMovement, _rigidbody2D.velocity.y);
             
-            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayerMask);
+            _animator.SetFloat(AnimatorRun, Mathf.Abs(_horizontalMovement));
+          
+            
             _isSpringJump = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _springLayerMask);
 
             if (_isSpringJump)
             {
                 _rigidbody2D.velocity = new Vector3(_horizontalMovement, _springJumpHeight );
+                _animator.SetTrigger(AnimatorJump);
             }
         }
      
@@ -66,10 +83,11 @@ namespace Game.Player
                 return;
             }
             
-            _rigidbody2D.velocity = new Vector3(_horizontalMovement, _jumpHeight);
+            _rigidbody2D.velocity = new Vector3(_rigidbody2D.velocity.x, _jumpHeight);
+            _animator.SetTrigger(AnimatorJump);
         }
 
-        public void UseItem()
+        public void ThrowItem()
         {
          
         }
@@ -98,13 +116,18 @@ namespace Game.Player
             
             
             _transform.localScale = new Vector3(xScale,_transform.localScale.z,_transform.localScale.z);
+        }
+
+  
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
            
         }
-        
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnCollisionExit2D(Collision2D other)
         {
-        
+         
             
         }
     }

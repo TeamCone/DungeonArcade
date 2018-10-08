@@ -29,9 +29,11 @@
             </e>
             <e p="Utilities" t="Include">
               <e p="AnimatedTile.cs" t="Include" />
+              <e p="Conveyor.cs" t="Include" />
               <e p="PrefabCreator.cs" t="Include" />
               <e p="ResourceGetter.cs" t="Include" />
               <e p="SingletonMonoBehaviour.cs" t="Include" />
+              <e p="Teleporter.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -45,8 +47,7 @@
       </e>
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2018.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_DungeonArcade.-1163146495.00" t="ExcludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_DungeonArcade.1268323568.00" t="ExcludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
   </component>
 </project>
