@@ -18,13 +18,21 @@ namespace Game.Scripts.Game
         private Sprite[] _sprites;
         private const string BaseFilename = "dungeon-tileset 1_";
 
-        private Action OnTimeUpCallback;
+        private Action _onTimeUpCallback;
         
         private void Start()
         {
             _sprites = Resources.LoadAll<Sprite>("dungeon-tileset 1");
             _timer = new GameTimer();
-            _timer.StartTime(_gameTime, PrintTimer);
+            
+            //Main Timer
+            _timer.StartTime(_gameTime, PrintTimer, _onTimeUpCallback);
+            
+            //To Pause Timer
+            PauseTime();
+            
+            //To Resume Timer
+            ResumeTime();
             
             //Sample Callback for times up
             SetTimeUpCallback(() =>
@@ -35,7 +43,17 @@ namespace Game.Scripts.Game
 
         public void SetTimeUpCallback(Action onTimeUpCallback)
         {
-            OnTimeUpCallback += onTimeUpCallback;
+            _onTimeUpCallback += onTimeUpCallback;
+        }
+
+        public void PauseTime()
+        {    
+            _timer.PauseTime();
+        }
+        
+        public void ResumeTime()
+        {
+            _timer.ResumeTime();
         }
 
         private async void PrintTimer(int currentTime)
@@ -60,7 +78,7 @@ namespace Game.Scripts.Game
             if (currentTime == 0)
             {
                 await DelayWithSeconds(0);
-                OnTimeUpCallback?.Invoke();
+                _onTimeUpCallback?.Invoke();
             }
         }
         
