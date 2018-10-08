@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-
-namespace Game.Player
+﻿namespace Game.Player
 {
     public interface IPlayer
     {
