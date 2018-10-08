@@ -1,4 +1,5 @@
 ﻿using Game.Input;
+using Game.Scripts;
 using UnityEngine;
 
 namespace Game.Player
@@ -18,6 +19,8 @@ namespace Game.Player
         private float _springJumpHeight = 20f;
         [SerializeField]
         private EnumPlayer _enumPlayer;
+
+        private ICharacter _character;
         
         [SerializeField]private LayerMask _springLayerMask;
         [SerializeField]private LayerMask _groundLayerMask;
@@ -43,6 +46,9 @@ namespace Game.Player
             _animator = GetComponent<Animator>();
             
             GameInputController.Instance.SetPlayer(_enumPlayer, this);
+            
+            //Create Character Object
+            _character = new Character(_enumPlayer);
         }
 
         public void SetPlayer(EnumPlayer enumPlayer)
