@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Player;
 using Game.Utilities;
 using UnityEngine;
@@ -8,7 +9,8 @@ namespace Game.Input
     public class GameInputController : MonoBehaviour
     {
         private IPlayer[] _player = new IPlayer[4];
-		
+        private Action<EnumPlayer> _onPlayerJoinGame;
+
         private void Update()
         {
             PlayerInput();
@@ -18,7 +20,11 @@ namespace Game.Input
         {
             return _player;
         }
-     
+
+        public void SetPlayerJoinGame(Action<EnumPlayer> onPlayerJoinGame)
+        {
+            _onPlayerJoinGame = onPlayerJoinGame;
+        }
 
         public void SetPlayer(EnumPlayer enumPlayer, IPlayer player)
         {
@@ -64,7 +70,7 @@ namespace Game.Input
             
             if (UnityEngine.Input.GetButtonDown("P" +(playerId + 1)+"Submit"))
             {
-               
+                _onPlayerJoinGame?.Invoke((EnumPlayer) playerId);
             }
         }
     }

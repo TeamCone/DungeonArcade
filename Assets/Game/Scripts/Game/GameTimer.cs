@@ -28,6 +28,7 @@ namespace Game.Scripts.Game
         public void StopTime()
         {
             _time = 0;
+            _isPaused = true;
         }
 
         public void PauseTime()
