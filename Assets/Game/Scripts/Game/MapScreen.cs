@@ -4,23 +4,25 @@ using Game.Input;
 using Game.Player;
 using Game.Scripts.Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapScreen : MonoBehaviour
 {
 
-    [SerializeField] private Transform[] _playerSpawns;
     [SerializeField] private GameInputController _gameInputController;
-	[SerializeField] private TimeController _timeController;
-
 	private List<IPlayer> _players = new List<IPlayer>();
 	
+	[SerializeField] private Image[] _pressStartImages;
+	[SerializeField] private Transform[] _playerSpawns;
+	[SerializeField] private GameObject[] _playerContainers;
+	[SerializeField] private TimeController _timeController;
+
+	private List<EnumPlayer> _enumPlayers;
 	
     void Start () 
     {
-        SpawnPlayer(EnumPlayer.Player1);
-        SpawnPlayer(EnumPlayer.Player2);
-        SpawnPlayer(EnumPlayer.Player3);
-        SpawnPlayer(EnumPlayer.Player4);
+	    Init();
+	    GetPlayers();
 	    _timeController.SetTimeUpCallback(OnTimeUp);
 	    _timeController.StartTime();
     }
@@ -62,6 +64,67 @@ public class MapScreen : MonoBehaviour
 	    _players.Add(player);
         _gameInputController.SetPlayer(enumPlayer, player);
     }
+	
+	private void GetPlayers()
+	{
+		var players = GameManager.Instance.GetPlayers();
+
+		if (players.list.Any(player => player == EnumPlayer.Player1))
+		{
+			if (_enumPlayers.Any(player => player == EnumPlayer.Player1) == false)
+			{
+				_enumPlayers.Add(EnumPlayer.Player1);
+				ShowPlayer(EnumPlayer.Player1);
+			}
+		}
+		
+		if (players.list.Any(player => player == EnumPlayer.Player2))
+		{
+			if (_enumPlayers.Any(player => player == EnumPlayer.Player2) == false)
+			{
+				_enumPlayers.Add(EnumPlayer.Player2);
+				ShowPlayer(EnumPlayer.Player2);
+			}
+		}
+		
+		if (players.list.Any(player => player == EnumPlayer.Player3))
+		{
+			if (_enumPlayers.Any(player => player == EnumPlayer.Player3) == false)
+			{
+				_enumPlayers.Add(EnumPlayer.Player3);
+				ShowPlayer(EnumPlayer.Player3);
+			}
+		}
+		
+		if (players.list.Any(player => player == EnumPlayer.Player4))
+		{
+			if (_enumPlayers.Any(player => player == EnumPlayer.Player4) == false)
+			{
+				_enumPlayers.Add(EnumPlayer.Player4);
+				ShowPlayer(EnumPlayer.Player4);
+			}
+		}
+	}
+	
+	private void Init()
+	{
+		_enumPlayers = new List<EnumPlayer>();
+		for (var i = 0; i < 4; i++)
+		{
+			_pressStartImages[i].gameObject.SetActive(true);
+			_playerContainers[i].gameObject.SetActive(false);
+		}
+		
+	}
+	
+	private void ShowPlayer(EnumPlayer enumPlayer)
+	{
+		_pressStartImages[(int) enumPlayer].gameObject.SetActive(false);
+		_playerContainers[(int) enumPlayer].gameObject.SetActive(true);
+
+		SpawnPlayer(enumPlayer);
+
+	}
 	
 	
 	

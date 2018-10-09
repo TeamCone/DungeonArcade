@@ -47,6 +47,11 @@ namespace Game.Scripts.Game
             _onTimeUpCallback = onTimeUpCallback;
         }
 
+        public void StopTime()
+        {
+           //make timer stop here
+        }
+
         public void PauseTime()
         {    
             _timer.PauseTime();

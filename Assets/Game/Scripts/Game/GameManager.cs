@@ -1,4 +1,6 @@
-﻿using Game.Player;
+﻿using System.Collections.Generic;
+using Game.Player;
+using Game.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,9 +26,9 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene("TitleScene");
 	}
 
-	public void LoadSelectionScene()
+	public void LoadWaitingRoomScene()
 	{
-		SceneManager.LoadScene("SelectionScene");
+		SceneManager.LoadScene("WaitingRoomScene");
 	}
 	
 	public void LoadMapScene(int mapNumber)
@@ -38,6 +40,34 @@ public class GameManager : MonoBehaviour
 	public void LoadResultScene()
 	{
 		SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
+	}
+
+	public void AddPlayer(EnumPlayer player)
+	{
+		var players = GetPlayers();
+		players.list.Add(player);
+		var json = JsonUtility.ToJson(players);
+		PlayerPrefs.SetString("Players", json);
+	}
+
+	public Players GetPlayers()
+	{
+		var json = PlayerPrefs.GetString("Players", "");
+		if (string.IsNullOrEmpty(json))
+		{
+			return new Players();
+		}
+			
+		var players = JsonUtility.FromJson<Players>(json);
+		return players;
+	}
+
+	public void ClearPlayers()
+	{
+		var players = GetPlayers();
+		players.list.Clear();
+		var json = JsonUtility.ToJson(players);
+		PlayerPrefs.SetString("Players", json);
 	}
 
 	public PlayerController SpawnPlayer(EnumPlayer enumPlayer, Transform parent)
