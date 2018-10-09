@@ -18,6 +18,7 @@
               <e p="GameResult.cs" t="Include" />
               <e p="GameTimer.cs" t="Include" />
               <e p="ITimer.cs" t="Include" />
+              <e p="MapScreen.cs" t="Include" />
               <e p="ResultScreen.cs" t="Include" />
               <e p="SelectionScreen.cs" t="Include" />
               <e p="TimeController.cs" t="Include" />

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Player;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -39,16 +40,16 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
 	}
 
+	public PlayerController SpawnPlayer(EnumPlayer enumPlayer, Transform parent)
+	{
+		var player = Instantiate(Resources.Load("Player" + ((int)enumPlayer + 1)), parent, false) as GameObject;
+		return player.GetComponent<PlayerController>();
+	}
+
 
 	public GameResult GetGameResult()
 	{
 		var json = PlayerPrefs.GetString("GameResult", "");
-		
-		if (string.IsNullOrEmpty(json))
-		{
-			return null;
-		}
-		
 		var gameResult = JsonUtility.FromJson<GameResult>(json);
 		return gameResult;
 	}

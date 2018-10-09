@@ -33,12 +33,6 @@ namespace Game.Scripts.Game
             
             //To Resume Timer
             ResumeTime();
-            
-            //Sample Callback for times up
-            SetTimeUpCallback(() =>
-            {
-                Debug.Log("Times Up!");
-            });
         }
 
         public void SetTimeUpCallback(Action onTimeUpCallback)

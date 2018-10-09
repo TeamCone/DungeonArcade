@@ -39,23 +39,15 @@ namespace Game.Player
         private const string AnimatorIsDead = "IsDead";
         private const string AnimatorHasItem = "HasItem";
 
-        private void Start()
+        private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _transform = GetComponent<Transform>();
             _animator = GetComponent<Animator>();
             
-            GameInputController.Instance.SetPlayer(_enumPlayer, this);
-            
             //Create Character Object
             _character = new Character(_enumPlayer);
         }
-
-        public void SetPlayer(EnumPlayer enumPlayer)
-        {
-            _enumPlayer = enumPlayer;
-        }
-
 
         private void FixedUpdate()
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Input
 {
-    public class GameInputController : SingletonMonoBehaviour<GameInputController>
+    public class GameInputController : MonoBehaviour
     {
         private IPlayer[] _player = new IPlayer[4];
 		
@@ -31,7 +31,6 @@ namespace Game.Input
                 {
                     continue;
                 }
-                
 				
                 var pHorizontal = UnityEngine.Input.GetAxisRaw("P" +(i+1)+"Horizontal");
                 _player[i].MoveHorizontal(pHorizontal);

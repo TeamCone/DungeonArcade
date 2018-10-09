@@ -1,4 +1,3 @@
-using System;
 using Game.Player;
 
 namespace Game.Scripts
