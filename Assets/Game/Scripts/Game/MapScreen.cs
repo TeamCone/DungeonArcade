@@ -26,7 +26,6 @@ public class MapScreen : MonoBehaviour
 	    GetPlayers();
 	    _timeController.SetTimeUpCallback(OnTimeUp);
 	    _timeController.StartTime();
-	   
     }
 
 

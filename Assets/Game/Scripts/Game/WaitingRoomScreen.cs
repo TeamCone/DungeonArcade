@@ -26,6 +26,7 @@ public class WaitingRoomScreen : MonoBehaviour
 	
 	private void OnTimeUp()
 	{
+	    _timeController.StopTime();
 		LoadMapScene();
 	}
 
@@ -104,6 +105,7 @@ public class WaitingRoomScreen : MonoBehaviour
 
 		if (_players.Count == 4)
 		{
+			_timeController.StopTime();
 			LoadMapScene();
 		}
 	}

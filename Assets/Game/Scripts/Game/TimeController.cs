@@ -18,6 +18,8 @@ namespace Game.Scripts.Game
         private Sprite[] _sprites;
         private const string BaseFilename = "dungeon-tileset 1_";
 
+        private bool _isPaused;
+
         private Action _onTimeUpCallback;
         
         private void Start()
@@ -50,16 +52,19 @@ namespace Game.Scripts.Game
         public void StopTime()
         {
            _timer.StopTime();
+           _isPaused = true;
         }
 
         public void PauseTime()
-        {    
+        {
             _timer.PauseTime();
+            _isPaused = true;
         }
         
         public void ResumeTime()
         {
             _timer.ResumeTime();
+            _isPaused = false;
         }
 
         private void PrintTimer(int currentTime)
@@ -71,14 +76,17 @@ namespace Game.Scripts.Game
                 currentTime % 10
             };
 
-            for (var i = 0; i < _timeImages.Length; i++)
+            if (_isPaused == false)
             {
-                var value = values[i] + 32;
-                var sprite = _sprites.Single(s =>
+                for (var i = 0; i < _timeImages.Length; i++)
                 {
-                    return s.name == BaseFilename + value;
-                });
-                _timeImages[i].sprite = sprite;
+                    var value = values[i] + 32;
+                    var sprite = _sprites.Single(s =>
+                    {
+                        return s.name == BaseFilename + value;
+                    });
+                    _timeImages[i].sprite = sprite;
+                }
             }
         }
         
