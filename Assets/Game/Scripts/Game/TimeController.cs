@@ -49,7 +49,7 @@ namespace Game.Scripts.Game
 
         public void StopTime()
         {
-           //make timer stop here
+           _timer.StopTime();
         }
 
         public void PauseTime()

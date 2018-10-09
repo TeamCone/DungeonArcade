@@ -25,6 +25,11 @@ namespace Game.Scripts.Game
             onTimeUpCallback?.Invoke();
         }
 
+        public void StopTime()
+        {
+            _time = 0;
+        }
+
         public void PauseTime()
         {
             _isPaused = true;
