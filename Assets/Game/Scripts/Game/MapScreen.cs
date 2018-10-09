@@ -21,11 +21,15 @@ public class MapScreen : MonoBehaviour
 	
     void Start () 
     {
+	  
 	    Init();
 	    GetPlayers();
 	    _timeController.SetTimeUpCallback(OnTimeUp);
 	    _timeController.StartTime();
+	   
     }
+
+
 
 	//when time up, remove controls of each player and load result screen
 	private void OnTimeUp()
@@ -109,12 +113,18 @@ public class MapScreen : MonoBehaviour
 	private void Init()
 	{
 		_enumPlayers = new List<EnumPlayer>();
+		_gameInputController.SetPlayerJoinGame(OnPlayerJoinGame);
 		for (var i = 0; i < 4; i++)
 		{
 			_pressStartImages[i].gameObject.SetActive(true);
 			_playerContainers[i].gameObject.SetActive(false);
 		}
-		
+	}
+	
+	private void OnPlayerJoinGame(EnumPlayer enumPlayer)
+	{
+		GameManager.Instance.AddPlayer(enumPlayer);
+		GameManager.Instance.LoadMapScene(1);
 	}
 	
 	private void ShowPlayer(EnumPlayer enumPlayer)
