@@ -1,9 +1,8 @@
 ﻿using System;
 using Game.Player;
-using UnityEngine;
 
 [Serializable]
-public class GameResult : MonoBehaviour
+public class GameResult
 {
 	public EnumPlayer Winner;
 	public int Kills;

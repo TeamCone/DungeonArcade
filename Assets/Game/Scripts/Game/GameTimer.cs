@@ -13,8 +13,8 @@ namespace Game.Scripts.Game
         {
             _time = timeInSeconds;
             while (_time >= 0)
-            {
-                
+            {   
+                Debug.Log("time: " + _time);
                 currentTimeLeftCallback.Invoke(_time);
                 await DeductTimeByOneSecond();
                 if (_isPaused)

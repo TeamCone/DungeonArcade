@@ -5,5 +5,7 @@
         void Jump();
         void ThrowItem();
         void MoveHorizontal(float value);
+        bool IsWinner();
+        EnumPlayer GetPlayerId();
     }
 }

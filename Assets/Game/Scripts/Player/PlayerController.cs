@@ -91,6 +91,23 @@ namespace Game.Player
 
         }
 
+        public bool IsWinner()
+        {
+            var item = _character.CurrentItem();
+            if (item == null)
+            {
+                return false;
+            }
+            
+            return item.IsThrowable();
+        }
+
+        public EnumPlayer GetPlayerId()
+        {
+            return _enumPlayer;
+        }
+
+
         private void FaceCharacter(float value)
         {
 

@@ -13,8 +13,8 @@ public class ResultScreen : MonoBehaviour
 		var gameResult = GameManager.Instance.GetGameResult();
 
 		_winnerText.text = gameResult.Winner.ToString();
-		_killsText.text = gameResult.Winner.ToString();
-		_deathsText.text = gameResult.Winner.ToString();
+		_killsText.text = gameResult.Kills.ToString();
+		_deathsText.text = gameResult.Deaths.ToString();
 		
 	}
 }
