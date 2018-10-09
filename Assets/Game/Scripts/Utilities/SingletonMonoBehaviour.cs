@@ -25,24 +25,4 @@
         }
     }
 
-
-//Attach this to a gameobject in the heirarchy
-    public class MyMonobehaviorClass : SingletonMonoBehaviour<MyMonobehaviorClass>
-    {
-        public void Beer()
-        {
-            Debug.Log("Hello Beers!");
-        }
-    }
-
-//Lets call that singleton class
-    public class BeerCaller
-    {
-        public void CallBeer()
-        {
-            MyMonobehaviorClass.Instance.Beer();
-        }
-    }
-
-
 }
