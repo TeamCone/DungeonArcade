@@ -25222,7 +25222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f512e3cedd124419a839b4ca0bb45956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameTime: 20
+  _gameTime: 10
   _timeImages:
   - {fileID: 1752311}
   - {fileID: 713570179}

@@ -77,16 +77,18 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	public GameResult GetGameResult()
+	public List<GameResult> GetGameResult()
 	{
-		var json = PlayerPrefs.GetString("GameResult", "");
-		var gameResult = JsonUtility.FromJson<GameResult>(json);
-		return gameResult;
+		var json = PlayerPrefs.GetString("GameResults", "");
+		var gameResults = JsonUtility.FromJson<GameResults>(json);
+		return gameResults.Results;
 	}
 	
-	public void SetGameResult(GameResult gameResult)
+	public void SetGameResult(List<GameResult> gameResults)
 	{
-		var json = JsonUtility.ToJson(gameResult);
-		PlayerPrefs.SetString("GameResult", json);
+		var result = new GameResults(gameResults);
+		var json = JsonUtility.ToJson(result);
+		PlayerPrefs.SetString("GameResults", json);
+		Debug.LogFormat("Game Result in Prefs: {0}", json);
 	}
 }
