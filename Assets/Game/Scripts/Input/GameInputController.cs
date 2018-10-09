@@ -1,18 +1,23 @@
-﻿using Game.Player;
+﻿using System.Collections.Generic;
+using Game.Player;
 using Game.Utilities;
 using UnityEngine;
 
 namespace Game.Input
 {
-    public class GameInputController : SingletonMonoBehaviour<GameInputController>
+    public class GameInputController : MonoBehaviour
     {
-        private readonly IPlayer[] _player = new IPlayer[4];
+        private IPlayer[] _player = new IPlayer[4];
 		
         private void Update()
         {
             PlayerInput();
         }
 
+        public IEnumerable<IPlayer> GetPlayers()
+        {
+            return _player;
+        }
      
 
         public void SetPlayer(EnumPlayer enumPlayer, IPlayer player)
@@ -22,11 +27,12 @@ namespace Game.Input
 
         private void PlayerInput()
         {
-            for (var i = 0; i <= 0; i++)
+          
+            for (var i = 0; i < _player.Length; i++)
             {
                 NewPlayerJoinGame(i);
                     
-               if (_player[i]  == null)
+                if (_player[i] == null)
                 {
                     continue;
                 }
@@ -36,7 +42,7 @@ namespace Game.Input
 			
                 if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"UseItem"))
                 {
-                    _player[i].UseItem();
+                    _player[i].ThrowItem();
                 }
 
                 if (UnityEngine.Input.GetButtonDown("P" +(i+1)+"Jump"))
@@ -51,7 +57,7 @@ namespace Game.Input
         private void NewPlayerJoinGame(int playerId)
         {
             //if player already exists, do not let player join
-            if (_player[playerId]  != null)
+            if (_player[playerId] != null)
             {
                 return;
             }

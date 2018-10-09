@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
-
-namespace Game.Player
+﻿namespace Game.Player
 {
     public interface IPlayer
     {
         void Jump();
-        void UseItem();
+        void ThrowItem();
         void MoveHorizontal(float value);
+        bool IsWinner();
+        EnumPlayer GetPlayerId();
     }
 }
