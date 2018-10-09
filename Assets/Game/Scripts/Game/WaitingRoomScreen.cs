@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Game.Input;
-using Game.Player;
-using Game.Scripts.Game;
+﻿
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using Game.Player;
+using Game.Scripts.Game;
 
-public class MapScreen : MonoBehaviour
+public class WaitingRoomScreen : MonoBehaviour
 {
-
-    [SerializeField] private GameInputController _gameInputController;
-	
 	[SerializeField] private Image[] _pressStartImages;
 	[SerializeField] private Transform[] _playerSpawns;
 	[SerializeField] private GameObject[] _playerContainers;
@@ -18,30 +15,52 @@ public class MapScreen : MonoBehaviour
 
 	private List<EnumPlayer> _players;
 	
-    void Start () 
-    {
-	    Init();
-	    GetPlayers();
-	    
-	    _timeController.SetTimeUpCallback(OnTimeUp);
-    }
-
-	//when time up, remove controls of each player and load result screen
+	// Use this for initialization
+	void Start ()
+	{
+		Init();
+		GetPlayers();
+		_timeController.SetTimeUpCallback(OnTimeUp);
+	}
+	
 	private void OnTimeUp()
 	{
-		_gameInputController.SetPlayer(EnumPlayer.Player1, null);
-		_gameInputController.SetPlayer(EnumPlayer.Player2, null);
-		_gameInputController.SetPlayer(EnumPlayer.Player3, null);
-		_gameInputController.SetPlayer(EnumPlayer.Player4, null);
-		GameManager.Instance.LoadResultScene();
+		LoadMapScene();
 	}
 
-    private void SpawnPlayer(EnumPlayer enumPlayer)
-    {
-        var player = GameManager.Instance.SpawnPlayer(enumPlayer, _playerSpawns[(int)enumPlayer]);
-        _gameInputController.SetPlayer(enumPlayer, player);
-
-    }
+	private void LoadMapScene()
+	{
+		_timeController.StopTime();
+		GameManager.Instance.LoadMapScene(1);
+	}
+	
+	// Update is called once per frame
+	private void Update()
+	{
+		if (UnityEngine.Input.GetButtonDown("P1Submit"))
+		{
+			GameManager.Instance.AddPlayer(EnumPlayer.Player1);
+			GetPlayers();
+		}
+		
+		if (UnityEngine.Input.GetButtonDown("P2Submit"))
+		{
+			GameManager.Instance.AddPlayer(EnumPlayer.Player2);
+			GetPlayers();
+		}
+		
+		if (UnityEngine.Input.GetButtonDown("P3Submit"))
+		{
+			GameManager.Instance.AddPlayer(EnumPlayer.Player3);
+			GetPlayers();
+		}
+		
+		if (UnityEngine.Input.GetButtonDown("P4Submit"))
+		{
+			GameManager.Instance.AddPlayer(EnumPlayer.Player4);
+			GetPlayers();
+		}
+	}
 	
 	private void GetPlayers()
 	{
@@ -82,8 +101,13 @@ public class MapScreen : MonoBehaviour
 				ShowPlayer(EnumPlayer.Player4);
 			}
 		}
+
+		if (_players.Count == 4)
+		{
+			LoadMapScene();
+		}
 	}
-	
+
 	private void Init()
 	{
 		_players = new List<EnumPlayer>();
@@ -99,11 +123,8 @@ public class MapScreen : MonoBehaviour
 	{
 		_pressStartImages[(int) enumPlayer].gameObject.SetActive(false);
 		_playerContainers[(int) enumPlayer].gameObject.SetActive(true);
-
-		SpawnPlayer(enumPlayer);
-
+		
+		GameManager.Instance.SpawnPlayer(enumPlayer, _playerSpawns[(int)enumPlayer]);
+		
 	}
-	
-	
-	
 }
