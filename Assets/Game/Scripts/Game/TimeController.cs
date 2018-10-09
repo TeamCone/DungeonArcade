@@ -22,22 +22,29 @@ namespace Game.Scripts.Game
         
         private void Start()
         {
-            _sprites = Resources.LoadAll<Sprite>("dungeon-tileset 1");
-            _timer = new GameTimer();
+            
             
             //Main Timer
-            _timer.StartTime(_gameTime, PrintTimer, _onTimeUpCallback);
-            
+            //StartTime();
+
             //To Pause Timer
-            PauseTime();
-            
+            //PauseTime();
+
             //To Resume Timer
-            ResumeTime();
+            //ResumeTime();
+
+        }
+
+        public void StartTime()
+        {
+            _sprites = Resources.LoadAll<Sprite>("dungeon-tileset 1");
+            _timer = new GameTimer();
+            _timer.StartTime(_gameTime, PrintTimer, _onTimeUpCallback);
         }
 
         public void SetTimeUpCallback(Action onTimeUpCallback)
         {
-            _onTimeUpCallback += onTimeUpCallback;
+            _onTimeUpCallback = onTimeUpCallback;
         }
 
         public void StopTime()
@@ -55,7 +62,7 @@ namespace Game.Scripts.Game
             _timer.ResumeTime();
         }
 
-        private async void PrintTimer(int currentTime)
+        private void PrintTimer(int currentTime)
         {
             int[] values =
             {
@@ -64,20 +71,14 @@ namespace Game.Scripts.Game
                 currentTime % 10
             };
 
-            for (int i = 0; i < _timeImages.Length; i++)
+            for (var i = 0; i < _timeImages.Length; i++)
             {
                 var value = values[i] + 32;
-                Sprite sprite = _sprites.Single(s =>
+                var sprite = _sprites.Single(s =>
                 {
                     return s.name == BaseFilename + value;
                 });
                 _timeImages[i].sprite = sprite;
-            }
-
-            if (currentTime == 0)
-            {
-                await DelayWithSeconds(0);
-                _onTimeUpCallback?.Invoke();
             }
         }
         

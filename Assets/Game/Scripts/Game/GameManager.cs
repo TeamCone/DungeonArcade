@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene("Map" +mapNumber+ "Scene");
 	}
 	
-	//add the sene to map scene to still show map while showing result
+	//add the scene to map scene to still show map while showing result
 	public void LoadResultScene()
 	{
 		SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);

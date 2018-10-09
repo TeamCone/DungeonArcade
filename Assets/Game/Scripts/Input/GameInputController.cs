@@ -1,4 +1,5 @@
-﻿using Game.Player;
+﻿using System.Collections.Generic;
+using Game.Player;
 using Game.Utilities;
 using UnityEngine;
 
@@ -13,6 +14,10 @@ namespace Game.Input
             PlayerInput();
         }
 
+        public IEnumerable<IPlayer> GetPlayers()
+        {
+            return _player;
+        }
      
 
         public void SetPlayer(EnumPlayer enumPlayer, IPlayer player)
@@ -27,7 +32,7 @@ namespace Game.Input
             {
                 NewPlayerJoinGame(i);
                     
-                if (_player[i]  == null)
+                if (_player[i] == null)
                 {
                     continue;
                 }
@@ -52,7 +57,7 @@ namespace Game.Input
         private void NewPlayerJoinGame(int playerId)
         {
             //if player already exists, do not let player join
-            if (_player[playerId]  != null)
+            if (_player[playerId] != null)
             {
                 return;
             }
