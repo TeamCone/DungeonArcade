@@ -16,11 +16,12 @@ public class WaitingRoomScreen : MonoBehaviour
 	private List<EnumPlayer> _players;
 	
 	// Use this for initialization
-	void Start ()
+	private void Start ()
 	{
 		Init();
 		GetPlayers();
 		_timeController.SetTimeUpCallback(OnTimeUp);
+		_timeController.StartTime();
 	}
 	
 	private void OnTimeUp()
@@ -30,7 +31,6 @@ public class WaitingRoomScreen : MonoBehaviour
 
 	private void LoadMapScene()
 	{
-		_timeController.StopTime();
 		GameManager.Instance.LoadMapScene(1);
 	}
 	

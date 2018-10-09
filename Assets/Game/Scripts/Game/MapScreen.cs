@@ -35,26 +35,26 @@ public class MapScreen : MonoBehaviour
 		_gameInputController.SetPlayer(EnumPlayer.Player3, null);
 		_gameInputController.SetPlayer(EnumPlayer.Player4, null);
 
-		var gameResult = GetGameResult();
-		GameManager.Instance.SetGameResult(gameResult);
+		var gameResults = GetGameResult();
+		GameManager.Instance.SetGameResult(gameResults);
 		GameManager.Instance.LoadResultScene();
 	}
 
-	private GameResult GetGameResult()
+	private List<GameResult> GetGameResult()
 	{
-		var gameResult = new GameResult();
-		var winner = _players.SingleOrDefault(player => player.IsWinner());
-		gameResult.Kills = 10;
-		gameResult.Deaths = 10;
-		if (winner == null)
+		var gameResults = new List<GameResult>();
+		foreach (var player in _players)
 		{
-			gameResult.Winner = EnumPlayer.None;
+			Debug.LogFormat("Player {0}, Winner: {1}", player.GetPlayerId(), player.IsWinner());
+			gameResults.Add(new GameResult
+			{
+				Player = (int)player.GetPlayerId(),
+				IsWinner = player.IsWinner(),
+				Deaths = 10,
+				Kills = 10
+			});
 		}
-		else
-		{
-			gameResult.Winner = winner.GetPlayerId();
-		}
-		return gameResult;
+		return gameResults;
 	}
 
 
