@@ -31,6 +31,7 @@ public class WaitingRoomScreen : MonoBehaviour
 
 	private void LoadMapScene()
 	{
+		_timeController.StopTime();
 		GameManager.Instance.LoadMapScene(1);
 	}
 	

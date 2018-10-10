@@ -123,6 +123,7 @@ public class MapScreen : MonoBehaviour
 	
 	private void OnPlayerJoinGame(EnumPlayer enumPlayer)
 	{
+		_timeController.StopTime();
 		GameManager.Instance.AddPlayer(enumPlayer);
 		GameManager.Instance.LoadMapScene(1);
 	}

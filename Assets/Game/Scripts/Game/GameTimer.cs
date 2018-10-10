@@ -7,14 +7,15 @@ namespace Game.Scripts.Game
     public class GameTimer: ITimer
     {
         private int _time = 90;
-        private bool _isPaused = false;
+        private bool _isPaused;
+        private bool _isTimerStopped;
 
         public async void StartTime(int timeInSeconds, Action<int> currentTimeLeftCallback, Action onTimeUpCallback)
         {
             _time = timeInSeconds;
-            while (_time >= 0)
+            while (_time > 0)
             {   
-                currentTimeLeftCallback.Invoke(_time);
+                currentTimeLeftCallback?.Invoke(_time);
                 await DeductTimeByOneSecond();
                 if (_isPaused)
                 {
@@ -22,12 +23,18 @@ namespace Game.Scripts.Game
                 }
                 _time--;
             }
+
+            if (_isTimerStopped)
+            {
+                return;
+            }
             onTimeUpCallback?.Invoke();
         }
 
         public void StopTime()
         {
             _time = 0;
+            _isTimerStopped = true;
         }
 
         public void PauseTime()
