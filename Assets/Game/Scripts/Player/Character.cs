@@ -44,7 +44,7 @@ namespace Game.Scripts
 
         public void CharacterHit(IItem item)
         {
-            if (_playerState == EnumPlayerState.INVULNERABLE)
+            if (_playerState == EnumPlayerState.Invulnerable)
             {
                 return;
             }
@@ -54,8 +54,13 @@ namespace Game.Scripts
                 return;
             }
             
-            _playerState = EnumPlayerState.KNOCKED_DOWN;
+            _playerState = EnumPlayerState.Hit;
             _item = null;
+        }
+
+        public bool HasItem()
+        {
+            return _item != null;
         }
     }
 }

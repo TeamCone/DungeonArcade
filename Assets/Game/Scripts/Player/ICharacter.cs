@@ -10,5 +10,6 @@ namespace Game.Scripts
         void PickUpItem(IItem item);
         void ThrowItem();
         void CharacterHit(IItem item);
+        bool HasItem();
     }
 }

@@ -38,6 +38,7 @@ namespace Game.Player
         private const string AnimatorHit = "Hit";
         private const string AnimatorIsDead = "IsDead";
         private const string AnimatorHasItem = "HasItem";
+        
 
         private void Awake()
         {
@@ -58,6 +59,7 @@ namespace Game.Player
             
             _animator.SetFloat(AnimatorRun, Mathf.Abs(_horizontalMovement));
           
+            _animator.SetBool(AnimatorHasItem, _character.HasItem());
             
             _isSpringJump = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _springLayerMask);
 
@@ -81,7 +83,7 @@ namespace Game.Player
 
         public void ThrowItem()
         {
-         
+            _animator.SetTrigger(AnimatorThrow);
         }
 
         public void MoveHorizontal(float value)
@@ -127,8 +129,23 @@ namespace Game.Player
             _transform.localScale = new Vector3(xScale,_transform.localScale.z,_transform.localScale.z);
         }
 
-  
 
+        private void Hit()
+        {
+            _animator.SetBool(AnimatorIsDead, true);
+            _animator.SetTrigger(AnimatorHit);
+        }
+        
+        private void Resurrect()
+        {
+            _animator.SetBool(AnimatorIsDead, false);
+        }
+        
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+           
+        }
+        
         private void OnCollisionStay2D(Collision2D other)
         {
            

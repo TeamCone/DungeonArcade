@@ -19,7 +19,7 @@ namespace Game.Scripts
         public void TestCharacterDefaults()
         {
             Assert.AreEqual(null, _p.CurrentItem());
-            Assert.AreEqual(EnumPlayerState.DEFAULT, _p.CurrentState());
+            Assert.AreEqual(EnumPlayerState.Default, _p.CurrentState());
         }
 
         [Test]
@@ -43,9 +43,9 @@ namespace Game.Scripts
         [Test]
         public void TestChangeState()
         {
-            Assert.AreEqual(EnumPlayerState.DEFAULT, _p.CurrentState());
+            Assert.AreEqual(EnumPlayerState.Default, _p.CurrentState());
 
-            var expectedState = EnumPlayerState.KNOCKED_DOWN;
+            var expectedState = EnumPlayerState.Hit;
             _p.SetState(expectedState);
             Assert.AreEqual(expectedState, _p.CurrentState());
         }
@@ -59,7 +59,7 @@ namespace Game.Scripts
             _p.CharacterHit(item);
             
             
-            Assert.AreEqual(EnumPlayerState.KNOCKED_DOWN, _p.CurrentState(), "State should be KNOCKED_DOWN");
+            Assert.AreEqual(EnumPlayerState.Hit, _p.CurrentState(), "State should be KNOCKED_DOWN");
             Assert.AreEqual(null, _p.CurrentItem(), "Current Item should be null");
         }
 
@@ -76,18 +76,18 @@ namespace Game.Scripts
             _p.CharacterHit(item);
             
             
-            Assert.AreEqual(EnumPlayerState.DEFAULT, _p.CurrentState(), "State should not change");
+            Assert.AreEqual(EnumPlayerState.Default, _p.CurrentState(), "State should not change");
             Assert.AreEqual(ownItem, _p.CurrentItem(), "Item should not be dropped");
         }
 
         [Test]
         public void TestCharacterInvulnerable()
         {
-            _p.SetState(EnumPlayerState.INVULNERABLE);
+            _p.SetState(EnumPlayerState.Invulnerable);
             var dummy = new ThrowableItem();
             _p.PickUpItem(dummy);
             _p.CharacterHit(dummy);
-            Assert.AreEqual(EnumPlayerState.INVULNERABLE, _p.CurrentState(), "State should still be INVULNERABLE");
+            Assert.AreEqual(EnumPlayerState.Invulnerable, _p.CurrentState(), "State should still be INVULNERABLE");
             Assert.AreEqual(dummy, _p.CurrentItem(), "Current Item should not be null");
         }
 

@@ -7,5 +7,6 @@
         void SetOrigin(EnumPlayer player);
         EnumItemState GetState();
         void SetState(EnumItemState state);
+        void Throw();
     }
 }

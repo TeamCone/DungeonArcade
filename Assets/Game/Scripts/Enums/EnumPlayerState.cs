@@ -2,8 +2,8 @@
 {
     public enum EnumPlayerState
     {
-        DEFAULT,
-        KNOCKED_DOWN,
-        INVULNERABLE
+        Default,
+        Hit,
+        Invulnerable
     }
 }
