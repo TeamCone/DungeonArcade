@@ -26,6 +26,9 @@ public class ItemController : MonoBehaviour, IItem
 		_rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
 		_rigidbody2D.mass = 5;
 		_rigidbody2D.gravityScale = 5;
+		_rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+		_rigidbody2D.sleepMode = RigidbodySleepMode2D.NeverSleep;
+		_rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
 	}
 
 	public bool IsThrowable()
@@ -73,7 +76,7 @@ public class ItemController : MonoBehaviour, IItem
 		RemoveItem();
 		_throwItem.Throw(isFacingRight);
 		SetState(EnumItemState.MOVING);
-		TweenFacade.ThrowItem(_spriteRenderer, ThrowTime);
+		TweenFacade.ThrowItemEffect(_spriteRenderer, ThrowTime);
 		await SetBackToIdle();
 		
 	}
