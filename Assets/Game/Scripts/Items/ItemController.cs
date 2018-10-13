@@ -40,7 +40,6 @@ public class ItemController : MonoBehaviour, IItem
 		if (_transform.parent != null)
 		{
 			SetState(EnumItemState.PICKED);
-			TweenFacade.StopThrowItemEffect(_spriteRenderer);
 		}
 	}
 
@@ -91,8 +90,6 @@ public class ItemController : MonoBehaviour, IItem
 		RemoveItem();
 		_throwItem.Throw(isFacingRight);
 		SetState(EnumItemState.MOVING);
-		TweenFacade.ThrowItemEffect(_spriteRenderer);
-		
 	}
 
 	
@@ -126,7 +123,6 @@ public class ItemController : MonoBehaviour, IItem
 
 	private void ItemToIdle()
 	{
-		TweenFacade.StopThrowItemEffect(_spriteRenderer);
 		_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
 		SetState(EnumItemState.IDLE);
 	}
