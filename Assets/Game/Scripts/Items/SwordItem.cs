@@ -4,7 +4,7 @@ using UnityEngine;
 public class SwordItem : MonoBehaviour, IThrowItem
 {
 	private Vector3 _velocty;
-	private float _throwSpeed ;
+	private float _throwSpeed;
 	public void Throw(bool isFacingRight)
 	{
 		Debug.Log("IS FACING RIGHT " +isFacingRight);
@@ -21,7 +21,7 @@ public class SwordItem : MonoBehaviour, IThrowItem
 		_velocty = new Vector3(_throwSpeed,0,0);
 		itemRigidbody.AddForce (_velocty, ForceMode2D.Impulse);
 	}
-
+	
 	public string Name()
 	{
 		return name;

@@ -194,9 +194,9 @@ namespace Game.Player
         
         private IEnumerator Invulnerable()
         {
+            _isHit = false;
             yield return new WaitForSeconds(HitTime);
             _character.SetState(EnumPlayerState.Invulnerable);
-            _isHit = false;
             _animator.SetBool(AnimatorIsDead, false);
         }
         
