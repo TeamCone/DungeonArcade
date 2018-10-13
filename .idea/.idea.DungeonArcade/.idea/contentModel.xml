@@ -40,9 +40,14 @@
               <e p="GameInputController.cs" t="Include" />
             </e>
             <e p="Items" t="Include">
+              <e p="AxeItem.cs" t="Include" />
               <e p="IItem.cs" t="Include" />
-              <e p="NonThrowableItem.cs" t="Include" />
-              <e p="ThrowableItem.cs" t="Include" />
+              <e p="ItemController.cs" t="Include" />
+              <e p="IThrowItem.cs" t="Include" />
+              <e p="StarItem.cs" t="Include" />
+              <e p="StoneItem.cs" t="Include" />
+              <e p="SwordItem.cs" t="Include" />
+              <e p="TreasureItem.cs" t="Include" />
             </e>
             <e p="Player" t="Include">
               <e p="Character.cs" t="Include" />

@@ -7,7 +7,7 @@ public class FashImageTween : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		TweenFacade.FlashImageMesh(GetComponent<Image>(), 1);
+		TweenFacade.FlashImage(GetComponent<Image>(), 1);
 	}
 
 }

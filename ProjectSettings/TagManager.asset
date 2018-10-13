@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ThrowItem
   - PickItem
+  - Item
   layers:
   - Default
   - TransparentFX
