@@ -10,6 +10,7 @@ public class ItemController : MonoBehaviour, IItem
 	private Rigidbody2D _rigidbody2D;
 	private SpriteRenderer _spriteRenderer;
 	private Transform _transform;
+	private BoxCollider2D _boxCollider2D;
 	private const float ThrowTime = 2f;
 	
 	private void Awake()
@@ -18,17 +19,20 @@ public class ItemController : MonoBehaviour, IItem
 		_rigidbody2D = GetComponent<Rigidbody2D>();
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_throwItem = GetComponent<IThrowItem>();
+		_boxCollider2D = GetComponent<BoxCollider2D>();
 		_enumItemState = EnumItemState.IDLE;	
 	}
 
 	private void CreateRigidBody2D()
 	{
+		_boxCollider2D.enabled = true;
 		_rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
 		_rigidbody2D.mass = 5;
 		_rigidbody2D.gravityScale = 5;
 		_rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 		_rigidbody2D.sleepMode = RigidbodySleepMode2D.NeverSleep;
 		_rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+		
 	}
 
 	public bool IsThrowable()
@@ -45,6 +49,7 @@ public class ItemController : MonoBehaviour, IItem
 	{
 		_origin = player;
 		_transform.position = itemHolder.position;
+		_boxCollider2D.enabled = false;
 		Destroy(_rigidbody2D);
 		_transform.parent = itemHolder;
 	}
@@ -86,6 +91,22 @@ public class ItemController : MonoBehaviour, IItem
 	{
 		yield return  new WaitForSeconds(ThrowTime);
 		SetState(EnumItemState.IDLE);
+	}
+	
+	private void OnCollisionStay2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag("Platform"))
+		{
+			_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+		}
+	}
+	
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag("Platform"))
+		{
+			_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+		}
 	}
 	
 	
