@@ -40,11 +40,6 @@ public class ItemController : MonoBehaviour, IItem
 
 	public void Throw()
 	{
-		if (GetState() == EnumItemState.PICKED)
-		{
-			SetState(EnumItemState.MOVING);
-			_throwItem.Throw();
-		}
-		
+		_throwItem.Throw();
 	}
 }

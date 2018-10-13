@@ -9,7 +9,7 @@ namespace Game.Scripts
         IItem CurrentItem();
         void PickUpItem(IItem item);
         void ThrowItem();
-        void CharacterHit(IItem item);
+        bool IsCharacterHit(IItem item);
         bool HasItem();
     }
 }
