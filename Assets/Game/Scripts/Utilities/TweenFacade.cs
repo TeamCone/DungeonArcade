@@ -40,12 +40,12 @@ public static class TweenFacade
         spriteRenderer.DOFade(1, 0.1f);
     }
     
-    public static async void ThrowItem(SpriteRenderer spriteRenderer, float duration)
+    public static async void ThrowItemEffect(SpriteRenderer spriteRenderer, float duration)
     {
-        await ThrowItemCoroutine(spriteRenderer, duration);
+        await ThrowItemEffectCoroutine(spriteRenderer, duration);
     }
 
-    private static IEnumerator ThrowItemCoroutine(SpriteRenderer spriteRenderer, float duration)
+    private static IEnumerator ThrowItemEffectCoroutine(SpriteRenderer spriteRenderer, float duration)
     {
         var sequence = DOTween.Sequence();
         sequence.Append(spriteRenderer.DOColor(Color.red, 0.1f));
@@ -56,5 +56,6 @@ public static class TweenFacade
         sequence.Kill();
         sequence.Append(spriteRenderer.DOColor(Color.white, 0.1f));
     }
+    
     
 }

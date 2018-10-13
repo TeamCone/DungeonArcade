@@ -194,13 +194,23 @@ namespace Game.Player
         
         private IEnumerator Invulnerable()
         {
-            _isHit = false;
             yield return new WaitForSeconds(HitTime);
+            _isHit = false;
             _character.SetState(EnumPlayerState.Invulnerable);
             _animator.SetBool(AnimatorIsDead, false);
         }
         
         private void OnCollisionEnter2D(Collision2D other)
+        {
+            OnCollide(other);
+        }
+        
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            OnCollide(other);
+        }
+
+        private void OnCollide(Collision2D other)
         {
             if (other.gameObject.CompareTag("Item"))
             {
@@ -245,15 +255,5 @@ namespace Game.Player
             }
         }
         
-        private void OnCollisionStay2D(Collision2D other)
-        {
-           
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-         
-            
-        }
     }
 }

@@ -1,14 +1,14 @@
-﻿using Game.Player;
+﻿using System.Collections;
+using Game.Player;
 using UnityEngine;
 
 public class SwordItem : MonoBehaviour, IThrowItem
 {
 	private Vector3 _velocty;
 	private float _throwSpeed;
-	public void Throw(bool isFacingRight)
+	
+		public void Throw(bool isFacingRight)
 	{
-		Debug.Log("IS FACING RIGHT " +isFacingRight);
-		
 		if (isFacingRight == false)
 		{
 			_throwSpeed = -60;
@@ -17,10 +17,13 @@ public class SwordItem : MonoBehaviour, IThrowItem
 		{
 			_throwSpeed = 60;
 		}
+		
 		var itemRigidbody = GetComponent<Rigidbody2D>();
 		_velocty = new Vector3(_throwSpeed,0,0);
 		itemRigidbody.AddForce (_velocty, ForceMode2D.Impulse);
 	}
+	
+
 	
 	public string Name()
 	{
