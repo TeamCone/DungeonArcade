@@ -35,6 +35,11 @@ namespace Game.Player
         private bool _isOnConveyer;
         private bool _isHit;
         private bool _isFacingRight = true;
+        
+        //collider when dead
+        private CircleCollider2D _circleCollider2D;
+        //collider when alive
+        private CapsuleCollider2D _capsuleCollider2D;
 
 
         private const string AnimatorIsGrounded = "IsGrounded";
@@ -55,6 +60,9 @@ namespace Game.Player
             _transform = GetComponent<Transform>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _circleCollider2D = GetComponent<CircleCollider2D>();
+            _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+            
             
             //Create Character Object
             _character = new Character(_enumPlayer);
@@ -178,6 +186,8 @@ namespace Game.Player
             _transform.localScale = new Vector3(xScale,_transform.localScale.z,_transform.localScale.z);
         }
 
+        public EnumPlayer EnumPlayer => _enumPlayer;
+
 
         private async void Hit()
         {
@@ -186,6 +196,9 @@ namespace Game.Player
             _rigidbody2D.velocity = new Vector3(0, _rigidbody2D.velocity.y);
             _isHit = true;
 
+            _circleCollider2D.enabled = true;
+            _capsuleCollider2D.enabled = false;
+            
             await Invulnerable();
             await BackToNormal();
         }
@@ -203,6 +216,8 @@ namespace Game.Player
             _isHit = false;
             _character.SetState(EnumPlayerState.Invulnerable);
             _animator.SetBool(AnimatorIsDead, false);
+            _circleCollider2D.enabled = false;
+            _capsuleCollider2D.enabled = true;
         }
         
         private void OnCollisionEnter2D(Collision2D other)

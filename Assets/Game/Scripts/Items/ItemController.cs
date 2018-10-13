@@ -40,6 +40,7 @@ public class ItemController : MonoBehaviour, IItem
 		if (_transform.parent != null)
 		{
 			SetState(EnumItemState.PICKED);
+			TweenFacade.StopThrowItemEffect(_spriteRenderer);
 		}
 	}
 
@@ -97,16 +98,28 @@ public class ItemController : MonoBehaviour, IItem
 	
 	private void OnCollisionStay2D(Collision2D other)
 	{
-		if (other.gameObject.CompareTag("Platform"))
-		{
-			ItemToIdle();
-		}
+		OnCollide(other);
 	}
 	
 	private void OnCollisionEnter2D(Collision2D other)
 	{
+		OnCollide(other);
+	}
+
+	private void OnCollide(Collision2D other)
+	{
 		if (other.gameObject.CompareTag("Platform"))
 		{
+			ItemToIdle();
+		}
+		
+		if (other.gameObject.CompareTag("Player"))
+		{
+			if (other.gameObject.GetComponent<PlayerController>().EnumPlayer == _origin)
+			{
+				return;
+			}
+			
 			ItemToIdle();
 		}
 	}
