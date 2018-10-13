@@ -11,7 +11,6 @@ public class ItemController : MonoBehaviour, IItem
 	private SpriteRenderer _spriteRenderer;
 	private Transform _transform;
 	private BoxCollider2D _boxCollider2D;
-	private const float ThrowTime = 2f;
 	
 	private void Awake()
 	{
@@ -33,6 +32,15 @@ public class ItemController : MonoBehaviour, IItem
 		_rigidbody2D.sleepMode = RigidbodySleepMode2D.NeverSleep;
 		_rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
 		
+	}
+
+	//temporary fix
+	void Update()
+	{
+		if (_transform.parent != null)
+		{
+			SetState(EnumItemState.PICKED);
+		}
 	}
 
 	public bool IsThrowable()
@@ -76,28 +84,22 @@ public class ItemController : MonoBehaviour, IItem
 		}
 	}
 
-	public async void Throw(bool isFacingRight)
+	public void Throw(bool isFacingRight)
 	{
+		
 		RemoveItem();
 		_throwItem.Throw(isFacingRight);
 		SetState(EnumItemState.MOVING);
-		TweenFacade.ThrowItemEffect(_spriteRenderer, ThrowTime);
-		await SetBackToIdle();
+		TweenFacade.ThrowItemEffect(_spriteRenderer);
 		
 	}
-	
-	//set item back to idle after n seconds
-	private IEnumerator SetBackToIdle()
-	{
-		yield return  new WaitForSeconds(ThrowTime);
-		SetState(EnumItemState.IDLE);
-	}
+
 	
 	private void OnCollisionStay2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Platform"))
 		{
-			_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+			ItemToIdle();
 		}
 	}
 	
@@ -105,8 +107,15 @@ public class ItemController : MonoBehaviour, IItem
 	{
 		if (other.gameObject.CompareTag("Platform"))
 		{
-			_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+			ItemToIdle();
 		}
+	}
+
+	private void ItemToIdle()
+	{
+		TweenFacade.StopThrowItemEffect(_spriteRenderer);
+		_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+		SetState(EnumItemState.IDLE);
 	}
 	
 	

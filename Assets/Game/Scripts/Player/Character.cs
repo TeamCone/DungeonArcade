@@ -32,19 +32,11 @@ namespace Game.Scripts
         public void PickUpItem(IItem item)
         {
             _item = item;
+            _item.SetState(EnumItemState.PICKED);
         }
 
         public void ThrowItem(bool isFacingRight)
         {
-            if (_item?.IsThrowable() == false)
-            {
-                return;
-            }
-
-            if (_item?.GetState() != EnumItemState.PICKED)
-            {
-                return;
-            }
             _item.Throw(isFacingRight);
             _item = null;
         }
