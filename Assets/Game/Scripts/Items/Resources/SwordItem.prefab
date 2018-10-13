@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4466646026887846}
   - component: {fileID: 212704691739834968}
   - component: {fileID: 50705660996244976}
-  - component: {fileID: 58985800713751036}
   - component: {fileID: 114594242609329156}
   - component: {fileID: 114612377349461730}
+  - component: {fileID: 61804338603483142}
   m_Layer: 8
   m_Name: SwordItem
   m_TagString: Item
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487042499392586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.25, y: -1.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,12 +60,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &58985800713751036
-CircleCollider2D:
+--- !u!61 &61804338603483142
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,9 +76,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.032262802, y: 0.0040327907}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.53333336, y: 0.53333336}
+    newSize: {x: 0.53333336, y: 0.53333336}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.26666668
+  m_Size: {x: 0.27523422, y: 0.476874}
+  m_EdgeRadius: 0
 --- !u!114 &114594242609329156
 MonoBehaviour:
   m_ObjectHideFlags: 1
