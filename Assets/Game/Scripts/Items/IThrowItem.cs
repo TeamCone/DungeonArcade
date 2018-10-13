@@ -2,7 +2,7 @@
 {
     public interface IThrowItem
     {
-        void Throw();
+        void Throw(bool isFacingRight);
         string Name();
     }
 }

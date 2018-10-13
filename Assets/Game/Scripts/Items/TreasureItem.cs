@@ -1,13 +1,13 @@
-﻿using System;
-using Game.Player;
+﻿using Game.Player;
 using UnityEngine;
 
 public class TreasureItem : MonoBehaviour, IThrowItem 
 {
-	public void Throw()
+	public void Throw(bool isFacingRight)
 	{
-		Debug.Log("cannot throw treasure");
+		Debug.Log("Cannot throw treasure");
 	}
+
 
 	public string Name()
 	{

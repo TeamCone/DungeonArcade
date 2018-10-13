@@ -34,7 +34,7 @@ namespace Game.Scripts
             _item = item;
         }
 
-        public void ThrowItem()
+        public void ThrowItem(bool isFacingRight)
         {
             if (_item?.IsThrowable() == false)
             {
@@ -45,7 +45,7 @@ namespace Game.Scripts
             {
                 return;
             }
-            _item.Throw();
+            _item.Throw(isFacingRight);
             _item = null;
         }
 
@@ -62,7 +62,20 @@ namespace Game.Scripts
             }
             
             _playerState = EnumPlayerState.Hit;
-            _item = null;
+
+            if (_item != null)
+            {
+                //when carrying item, remove from player
+                if (_item.GetState() == EnumItemState.PICKED)
+                {
+                    Debug.Log("REMOVING ITEM ");
+                    _item.RemoveItem(); 
+                }
+               
+                _item = null;
+                
+            }
+           
             return true;
         }
 

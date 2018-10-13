@@ -34,6 +34,7 @@ namespace Game.Player
         private bool _isSpringJump;
         private bool _isOnConveyer;
         private bool _isHit;
+        private bool _isFacingRight = true;
 
 
         private const string AnimatorIsGrounded = "IsGrounded";
@@ -119,7 +120,7 @@ namespace Game.Player
             }
             
             _animator.SetTrigger(AnimatorThrow);
-            _character.ThrowItem();
+            _character.ThrowItem(_isFacingRight);
 
         }
 
@@ -159,11 +160,13 @@ namespace Game.Player
             if (value > 0)
             {
                 xScale = 1;
+                _isFacingRight = true;
             }
             
             if (value < 0)
             {
                 xScale = -1;
+                _isFacingRight = false;
             }
             
             
@@ -205,6 +208,11 @@ namespace Game.Player
                 switch (item.GetState())
                 {
                     case EnumItemState.IDLE:
+                        if (_isHit)
+                        {
+                            return;
+                        }
+                        
                         if (_character.HasItem())
                         {
                             return;
@@ -214,6 +222,11 @@ namespace Game.Player
                         _character.CurrentItem().SetOrigin(_enumPlayer, _itemHolder);
                         break;
                     case EnumItemState.MOVING:
+                        if (_isHit)
+                        {
+                            return;
+                        }
+                        
                         if (_character.IsCharacterHit(item) == false)
                         {
                             return;

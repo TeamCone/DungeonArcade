@@ -9,6 +9,7 @@ namespace Game.Player
         void SetOrigin(EnumPlayer player, Transform itemHolder);
         EnumItemState GetState();
         void SetState(EnumItemState state);
-        void Throw();
+        void Throw(bool isFacingRight);
+        void RemoveItem();
     }
 }

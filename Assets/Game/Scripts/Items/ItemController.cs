@@ -56,11 +56,22 @@ public class ItemController : MonoBehaviour, IItem
 		_enumItemState = state;
 	}
 
-	public async void Throw()
+	public void RemoveItem()
 	{
 		_transform.parent = null;
 		CreateRigidBody2D();
-		_throwItem.Throw();
+
+		if (IsThrowable() == false)
+		{
+			Debug.Log("ITEM IS TREASURE");
+			SetState(EnumItemState.IDLE);
+		}
+	}
+
+	public async void Throw(bool isFacingRight)
+	{
+		RemoveItem();
+		_throwItem.Throw(isFacingRight);
 		SetState(EnumItemState.MOVING);
 		TweenFacade.ThrowItem(_spriteRenderer, ThrowTime);
 		await SetBackToIdle();
