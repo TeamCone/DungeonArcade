@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4912881294776014}
   - component: {fileID: 212228351716701666}
   - component: {fileID: 50327497633290624}
-  - component: {fileID: 58301134230462394}
   - component: {fileID: 114825000910829758}
   - component: {fileID: 114392456695618642}
+  - component: {fileID: 61834754213663244}
   m_Layer: 8
   m_Name: StarItem
   m_TagString: Item
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014835274883452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.17, y: -1.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,12 +60,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &58301134230462394
-CircleCollider2D:
+--- !u!61 &61834754213663244
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,9 +76,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000011920929, y: -0.000000059604645}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.53333336, y: 0.53333336}
+    newSize: {x: 0.53333336, y: 0.53333336}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.26666668
+  m_Size: {x: 0.4688089, y: 0.476874}
+  m_EdgeRadius: 0
 --- !u!114 &114392456695618642
 MonoBehaviour:
   m_ObjectHideFlags: 1
