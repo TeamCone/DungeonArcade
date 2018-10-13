@@ -8,7 +8,8 @@ namespace Game.Scripts
         void SetState(EnumPlayerState playerState);
         IItem CurrentItem();
         void PickUpItem(IItem item);
-        void ThrowItem();
-        void CharacterHit(IItem item);
+        void ThrowItem(bool isFacingRight);
+        bool IsCharacterHit(IItem item);
+        bool HasItem();
     }
 }

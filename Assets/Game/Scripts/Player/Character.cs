@@ -1,4 +1,5 @@
 using Game.Player;
+using UnityEngine;
 
 namespace Game.Scripts
 {
@@ -33,29 +34,54 @@ namespace Game.Scripts
             _item = item;
         }
 
-        public void ThrowItem()
+        public void ThrowItem(bool isFacingRight)
         {
             if (_item?.IsThrowable() == false)
             {
                 return;
             }
+
+            if (_item?.GetState() != EnumItemState.PICKED)
+            {
+                return;
+            }
+            _item.Throw(isFacingRight);
             _item = null;
         }
 
-        public void CharacterHit(IItem item)
+        public bool IsCharacterHit(IItem item)
         {
-            if (_playerState == EnumPlayerState.INVULNERABLE)
+            if (_playerState == EnumPlayerState.Invulnerable)
             {
-                return;
+                return false;
             }
 
             if (item.GetOrigin() == _player)
             {
-                return;
+                return false;
             }
             
-            _playerState = EnumPlayerState.KNOCKED_DOWN;
-            _item = null;
+            _playerState = EnumPlayerState.Hit;
+
+            if (_item != null)
+            {
+                //when carrying item, remove from player
+                if (_item.GetState() == EnumItemState.PICKED)
+                {
+                    Debug.Log("REMOVING ITEM ");
+                    _item.RemoveItem(); 
+                }
+               
+                _item = null;
+                
+            }
+           
+            return true;
+        }
+
+        public bool HasItem()
+        {
+            return _item != null;
         }
     }
 }
