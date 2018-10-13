@@ -25,9 +25,10 @@ namespace Game.Player
 
         private ICharacter _character;
         
-        [SerializeField]private LayerMask _springLayerMask;
-        [SerializeField]private LayerMask _groundLayerMask;
+        [SerializeField] private LayerMask _springLayerMask;
+        [SerializeField] private LayerMask _groundLayerMask;
         [SerializeField] private Transform _groundCheck;
+        [SerializeField] private Transform _itemHolder;
        
         private bool _isGrounded;
         private bool _isSpringJump;
@@ -210,7 +211,7 @@ namespace Game.Player
                         }
                         _character.PickUpItem(item);
                         _character.CurrentItem().SetState(EnumItemState.PICKED);
-                        _character.CurrentItem().SetOrigin(_enumPlayer);
+                        _character.CurrentItem().SetOrigin(_enumPlayer, _itemHolder);
                         break;
                     case EnumItemState.MOVING:
                         if (_character.IsCharacterHit(item) == false)
