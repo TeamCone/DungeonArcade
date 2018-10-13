@@ -119,6 +119,11 @@ namespace Game.Player
                 return;
             }
             
+            if (_character.CurrentItem().GetState() != EnumItemState.PICKED)
+            {
+                return;
+            }
+            
             _animator.SetTrigger(AnimatorThrow);
             _character.ThrowItem(_isFacingRight);
 
@@ -228,7 +233,6 @@ namespace Game.Player
                             return;
                         }
                         _character.PickUpItem(item);
-                        _character.CurrentItem().SetState(EnumItemState.PICKED);
                         _character.CurrentItem().SetOrigin(_enumPlayer, _itemHolder);
                         break;
                     case EnumItemState.MOVING:

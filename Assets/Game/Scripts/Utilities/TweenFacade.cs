@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public static class TweenFacade  
 {
+    private static Sequence _throwItemEffectSequence;
 
     public static void FlashTextMesh(TextMeshProUGUI text, float duration)
     {
@@ -40,21 +41,18 @@ public static class TweenFacade
         spriteRenderer.DOFade(1, 0.1f);
     }
     
-    public static async void ThrowItemEffect(SpriteRenderer spriteRenderer, float duration)
+    public static void ThrowItemEffect(SpriteRenderer spriteRenderer)
     {
-        await ThrowItemEffectCoroutine(spriteRenderer, duration);
+        _throwItemEffectSequence = DOTween.Sequence();
+        _throwItemEffectSequence.Append(spriteRenderer.DOColor(Color.red, 0.1f));
+        _throwItemEffectSequence.Append(spriteRenderer.DOColor(Color.white, 0.1f));
+        _throwItemEffectSequence.SetLoops(-1);
     }
 
-    private static IEnumerator ThrowItemEffectCoroutine(SpriteRenderer spriteRenderer, float duration)
+    public static void StopThrowItemEffect(SpriteRenderer spriteRenderer)
     {
-        var sequence = DOTween.Sequence();
-        sequence.Append(spriteRenderer.DOColor(Color.red, 0.1f));
-        sequence.Append(spriteRenderer.DOColor(Color.white, 0.1f));
-        sequence.SetLoops(-1);
-        
-        yield return  new WaitForSeconds(duration);
-        sequence.Kill();
-        sequence.Append(spriteRenderer.DOColor(Color.white, 0.1f));
+        _throwItemEffectSequence.Kill();
+        spriteRenderer.DOColor(Color.white, 0.1f);
     }
     
     
