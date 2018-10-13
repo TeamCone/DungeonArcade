@@ -39,6 +39,8 @@ namespace Game.Scripts
             {
                 return;
             }
+         
+            _item.Throw();
             _item = null;
         }
 

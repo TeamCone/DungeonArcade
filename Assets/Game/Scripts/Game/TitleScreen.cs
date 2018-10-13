@@ -1,39 +1,49 @@
 ﻿using Game.Player;
 using UnityEngine;
 
-public class TitleScreen : MonoBehaviour {
+public class TitleScreen : MonoBehaviour
+{
 
+	private bool _hasPlayerStarted;
 
 	private void Start()
 	{
 		GameManager.Instance.ClearPlayers();
 	}
-	//test only
+
 	private void Update()
 	{
-		if (UnityEngine.Input.GetButtonDown("P1Submit"))
+		if (_hasPlayerStarted)
 		{
-			GameManager.Instance.AddPlayer(EnumPlayer.Player1);
-			GameManager.Instance.LoadWaitingRoomScene();
+			return;
 		}
 		
-		if (UnityEngine.Input.GetButtonDown("P2Submit"))
+		if (Input.GetButtonDown("P1Submit"))
 		{
-			GameManager.Instance.AddPlayer(EnumPlayer.Player2);
-			GameManager.Instance.LoadWaitingRoomScene();
+			LoadWaitingRoom(EnumPlayer.Player1);
 		}
 		
-		if (UnityEngine.Input.GetButtonDown("P3Submit"))
+		if (Input.GetButtonDown("P2Submit"))
 		{
-			GameManager.Instance.AddPlayer(EnumPlayer.Player3);
-			GameManager.Instance.LoadWaitingRoomScene();
+			LoadWaitingRoom(EnumPlayer.Player2);
 		}
 		
-		if (UnityEngine.Input.GetButtonDown("P4Submit"))
+		if (Input.GetButtonDown("P3Submit"))
 		{
-			GameManager.Instance.AddPlayer(EnumPlayer.Player4);
-			GameManager.Instance.LoadWaitingRoomScene();
+			LoadWaitingRoom(EnumPlayer.Player3);
 		}
+		
+		if (Input.GetButtonDown("P4Submit"))
+		{
+			LoadWaitingRoom(EnumPlayer.Player4);
+		}
+	}
+
+	private void LoadWaitingRoom(EnumPlayer enumPlayer)
+	{
+		GameManager.Instance.AddPlayer(enumPlayer);
+		_hasPlayerStarted = true;
+		GameManager.Instance.LoadWaitingRoomScene();
 	}
 	
 }

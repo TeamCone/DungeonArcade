@@ -5,6 +5,8 @@ public class ItemController : MonoBehaviour, IItem
 {
 	private IThrowItem _throwItem;
 	private EnumItemState _enumItemState;
+	private EnumPlayer _origin;
+	
 	private void Awake()
 	{
 		_throwItem = GetComponent<IThrowItem>();
@@ -13,17 +15,17 @@ public class ItemController : MonoBehaviour, IItem
 
 	public bool IsThrowable()
 	{
-		throw new System.NotImplementedException();
+		return _throwItem.Name() != "TreasureItem";
 	}
 
 	public EnumPlayer GetOrigin()
 	{
-		throw new System.NotImplementedException();
+		return _origin;
 	}
 
 	public void SetOrigin(EnumPlayer player)
 	{
-		throw new System.NotImplementedException();
+		_origin = player;
 	}
 
 	public EnumItemState GetState()
@@ -38,10 +40,11 @@ public class ItemController : MonoBehaviour, IItem
 
 	public void Throw()
 	{
-		if (GetState() != EnumItemState.PICKED)
+		if (GetState() == EnumItemState.PICKED)
 		{
-			return;
+			SetState(EnumItemState.MOVING);
+			_throwItem.Throw();
 		}
-		_throwItem.Throw();
+		
 	}
 }

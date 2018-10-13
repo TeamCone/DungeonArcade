@@ -6,6 +6,11 @@ public class TreasureItem : MonoBehaviour, IThrowItem
 {
 	public void Throw()
 	{
-		throw new NotImplementedException();
+		Debug.Log("cannot throw treasure");
+	}
+
+	public string Name()
+	{
+		return name;
 	}
 }

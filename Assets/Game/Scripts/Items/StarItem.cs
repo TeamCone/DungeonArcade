@@ -6,6 +6,11 @@ public class StarItem : MonoBehaviour, IThrowItem
 {
 	public void Throw()
 	{
-		throw new NotImplementedException();
+		Debug.Log("throwing star");
+	}
+
+	public string Name()
+	{
+		return name;
 	}
 }

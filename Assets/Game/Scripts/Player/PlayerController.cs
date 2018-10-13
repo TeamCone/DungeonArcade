@@ -1,4 +1,5 @@
-﻿using Game.Input;
+﻿using System;
+using Game.Input;
 using Game.Scripts;
 using UnityEngine;
 
@@ -83,7 +84,18 @@ namespace Game.Player
 
         public void ThrowItem()
         {
-            _animator.SetTrigger(AnimatorThrow);
+            if (_character.HasItem() == false)
+            {
+                return;
+            }
+
+            if (_character.CurrentItem().IsThrowable())
+            {
+                _animator.SetTrigger(AnimatorThrow);
+                _character.CurrentItem().Throw();
+            }
+            
+           
         }
 
         public void MoveHorizontal(float value)
@@ -143,7 +155,37 @@ namespace Game.Player
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-           
+            if (other.gameObject.CompareTag("Item"))
+            {
+                //hit 
+                switch (other.gameObject.GetComponent<IItem>().GetState())
+                {
+                    case EnumItemState.IDLE:
+                        if (_character.HasItem())
+                        {
+                            return;
+                        }
+                        _character.PickUpItem(other.gameObject.GetComponent<IItem>());
+                        _character.CurrentItem().SetState(EnumItemState.PICKED);
+                        _character.CurrentItem().SetOrigin(_enumPlayer);
+                        break;
+                    case EnumItemState.MOVING:
+                        if (other.gameObject.GetComponent<IItem>().GetOrigin() == _enumPlayer)
+                        {
+                            return;
+                        }
+                        
+                        Hit();
+                        
+                        break;
+                    case EnumItemState.PICKED:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            
+                
+            }
         }
         
         private void OnCollisionStay2D(Collision2D other)

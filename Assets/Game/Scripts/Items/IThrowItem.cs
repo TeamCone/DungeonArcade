@@ -3,5 +3,6 @@
     public interface IThrowItem
     {
         void Throw();
+        string Name();
     }
 }

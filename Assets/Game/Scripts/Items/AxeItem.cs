@@ -6,6 +6,11 @@ public class AxeItem : MonoBehaviour, IThrowItem
 {
 	public void Throw()
 	{
-		throw new NotImplementedException();
+		Debug.Log("throwing axe");
+	}
+
+	public string Name()
+	{
+		return name;
 	}
 }
