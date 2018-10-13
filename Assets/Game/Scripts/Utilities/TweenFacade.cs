@@ -40,20 +40,7 @@ public static class TweenFacade
         sequence.Kill();
         spriteRenderer.DOFade(1, 0.1f);
     }
-    
-    public static void ThrowItemEffect(SpriteRenderer spriteRenderer)
-    {
-        _throwItemEffectSequence = DOTween.Sequence();
-        _throwItemEffectSequence.Append(spriteRenderer.DOColor(Color.red, 0.1f));
-        _throwItemEffectSequence.Append(spriteRenderer.DOColor(Color.white, 0.1f));
-        _throwItemEffectSequence.SetLoops(-1);
-    }
 
-    public static void StopThrowItemEffect(SpriteRenderer spriteRenderer)
-    {
-        _throwItemEffectSequence.Kill();
-        spriteRenderer.DOColor(Color.white, 0.1f);
-    }
     
     
 }
