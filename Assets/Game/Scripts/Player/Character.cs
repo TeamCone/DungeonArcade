@@ -45,8 +45,6 @@ namespace Game.Scripts
             {
                 return;
             }
-            
-            _item.SetState(EnumItemState.MOVING);
             _item.Throw();
             _item = null;
         }

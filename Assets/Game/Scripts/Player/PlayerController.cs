@@ -185,7 +185,6 @@ namespace Game.Player
         {
             TweenFacade.CharacterInvulnerable(_spriteRenderer, InvulnerableTime);
             yield return new WaitForSeconds(InvulnerableTime);
-            Debug.Log("Back To Normal");
             _character.SetState(EnumPlayerState.Default);
         }
         
@@ -195,8 +194,6 @@ namespace Game.Player
             _character.SetState(EnumPlayerState.Invulnerable);
             _isHit = false;
             _animator.SetBool(AnimatorIsDead, false);
-            
-          
         }
         
         private void OnCollisionEnter2D(Collision2D other)
