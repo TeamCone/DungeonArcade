@@ -32,6 +32,7 @@
               <e p="ITimer.cs" t="Include" />
               <e p="MapScreen.cs" t="Include" />
               <e p="ResultScreen.cs" t="Include" />
+              <e p="SoundManager.cs" t="Include" />
               <e p="TimeController.cs" t="Include" />
               <e p="TitleScreen.cs" t="Include" />
               <e p="WaitingRoomScreen.cs" t="Include" />
@@ -63,6 +64,7 @@
               <e p="FashImageTween.cs" t="Include" />
               <e p="FashTextMeshTween.cs" t="Include" />
               <e p="PrefabCreator.cs" t="Include" />
+              <e p="ResourceFacade.cs" t="Include" />
               <e p="ResourceGetter.cs" t="Include" />
               <e p="SingletonMonoBehaviour.cs" t="Include" />
               <e p="Teleporter.cs" t="Include" />

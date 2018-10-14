@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
 	public PlayerController SpawnPlayer(EnumPlayer enumPlayer, Transform parent)
 	{
-		var player = Instantiate(Resources.Load("Player" + ((int)enumPlayer + 1)), parent, false) as GameObject;
+		var player = Instantiate(ResourceFacade.LoadPrefab("Player" + ((int)enumPlayer + 1)), parent, false);
 		return player.GetComponent<PlayerController>();
 	}
 
