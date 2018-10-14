@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultScreen : MonoBehaviour
@@ -20,7 +21,7 @@ public class ResultScreen : MonoBehaviour
 	[SerializeField] private Text _player4killsText;
 	[SerializeField] private Text _player4deathsText;
 	
-	void Start()
+	async void Start()
 	{
 		//get game result and show stats
 		var gameResults = GameManager.Instance.GetGameResult();
@@ -37,6 +38,14 @@ public class ResultScreen : MonoBehaviour
 			_player1killsText.text = gameResult.Kills.ToString();
 			_player1deathsText.text = gameResult.Deaths.ToString();
 		}
-		
+
+		await TitleScreenDelay();
+
 	}
+
+	private IEnumerator TitleScreenDelay()
+	{
+		yield return new WaitForSeconds(3);
+		GameManager.Instance.LoadTitleScene("ResultScene");
+	} 
 }

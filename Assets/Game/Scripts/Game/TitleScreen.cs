@@ -43,7 +43,7 @@ public class TitleScreen : MonoBehaviour
 	{
 		GameManager.Instance.AddPlayer(enumPlayer);
 		_hasPlayerStarted = true;
-		GameManager.Instance.LoadWaitingRoomScene();
+		GameManager.Instance.LoadWaitingRoomScene("TitleScene");
 	}
 	
 }
