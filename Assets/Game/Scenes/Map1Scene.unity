@@ -24108,7 +24108,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2007258135}
   - component: {fileID: 2007258133}
-  - component: {fileID: 2007258134}
   m_Layer: 0
   m_Name: BackgroundCamera
   m_TagString: MainCamera
@@ -24156,13 +24155,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2007258134
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2007258132}
-  m_Enabled: 1
 --- !u!4 &2007258135
 Transform:
   m_ObjectHideFlags: 0

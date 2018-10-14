@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -41,6 +42,14 @@ public static class TweenFacade
         spriteRenderer.DOFade(1, 0.1f);
     }
 
+    
+    public static void Move(Transform transform, Vector3 position, float duration, Action onComplete = null)
+    {
+        transform.DOLocalMove(position, duration).SetEase(Ease.Linear).OnComplete(delegate
+        {
+            onComplete?.Invoke();
+        });
+    }
     
     
 }

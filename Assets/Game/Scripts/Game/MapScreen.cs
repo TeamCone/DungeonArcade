@@ -125,7 +125,7 @@ public class MapScreen : MonoBehaviour
 	{
 		_timeController.StopTime();
 		GameManager.Instance.AddPlayer(enumPlayer);
-		GameManager.Instance.LoadMapScene(1);
+		GameManager.Instance.LoadMapScene(1, "Map1Scene", "New Challenger");
 	}
 	
 	private void ShowPlayer(EnumPlayer enumPlayer)
