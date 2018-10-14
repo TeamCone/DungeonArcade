@@ -11,5 +11,6 @@ namespace Game.Player
         void SetState(EnumItemState state);
         void Throw(bool isFacingRight);
         void RemoveItem();
+        bool HasHolder();
     }
 }

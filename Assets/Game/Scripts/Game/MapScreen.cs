@@ -41,7 +41,7 @@ public class MapScreen : MonoBehaviour
 
 		var gameResults = GetGameResult();
 		GameManager.Instance.SetGameResult(gameResults);
-		GameManager.Instance.LoadResultScene();
+		GameManager.Instance.LoadResultScene(transitionText:"Time's Up!");
 	}
 
 	private List<GameResult> GetGameResult()

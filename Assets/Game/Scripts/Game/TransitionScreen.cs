@@ -35,7 +35,7 @@ public class TransitionScreen : MonoBehaviour
 
     private void AnimateTransition()
     {
-        TweenFacade.Move(_transitionImage.transform, _imageOriginalPosition, 1, async delegate
+        TweenFacade.Move(_transitionImage.transform, _imageOriginalPosition, 0.5f, async delegate
         {
             if (!string.IsNullOrEmpty(_unloadScene))
             {
@@ -45,7 +45,7 @@ public class TransitionScreen : MonoBehaviour
             await AnimationDelay();
             await SceneManager.LoadSceneAsync(_loadScene, LoadSceneMode.Additive);
 		
-            TweenFacade.Move(_transitionImage.transform, new Vector3(_imageOriginalPosition.x - 5000,_imageOriginalPosition.y, _imageOriginalPosition.z), 1, delegate
+            TweenFacade.Move(_transitionImage.transform, new Vector3(_imageOriginalPosition.x - 5000,_imageOriginalPosition.y, _imageOriginalPosition.z), 0.5f, delegate
             {
                 SceneManager.UnloadSceneAsync("TransitionScene");
             });
