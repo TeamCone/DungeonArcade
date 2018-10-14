@@ -33,7 +33,7 @@ public class WaitingRoomScreen : MonoBehaviour
 	private void LoadMapScene()
 	{
 		_timeController.StopTime();
-		GameManager.Instance.LoadMapScene(1, "WaitingRoomScene");
+		GameManager.Instance.LoadMapScene(1, "WaitingRoomScene", "Starting Match");
 	}
 	
 	// Update is called once per frame

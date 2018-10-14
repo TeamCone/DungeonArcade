@@ -43,6 +43,13 @@ public class ItemController : MonoBehaviour, IItem
 		}
 	}
 
+
+	//temporary fix
+	public bool HasHolder()
+	{
+		return _transform.parent != null;
+	}
+
 	public bool IsThrowable()
 	{
 		return _throwItem.Name() != "TreasureItem";

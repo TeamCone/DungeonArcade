@@ -73,7 +73,21 @@ namespace Game.Scripts
 
         public bool HasItem()
         {
-            return _item != null;
+            if (_item != null)
+            {
+                if(_item.HasHolder())
+                {
+                    return true;
+                }
+               
+                _item = null;
+                return false;
+            }
+
+            return false;
+
+            //sometimes not accurate so i removed
+            //return _item != null;
         }
     }
 }
