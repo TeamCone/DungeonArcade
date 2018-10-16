@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{A0B6118B-65E6-5B20-50CD-F3F50919A80E}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/AsyncAwaitUtil/Tests/AsyncUtilTests.cs">
+    <Files>
+      <File FileName="Assets/Plugins/AsyncAwaitUtil/Tests/AsyncUtilTests.cs" Line="27" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
