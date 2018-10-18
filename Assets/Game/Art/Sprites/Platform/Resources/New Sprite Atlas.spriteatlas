@@ -100,9 +100,25 @@ SpriteAtlas:
     - {fileID: 21300114, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
     - {fileID: 21300116, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
     - {fileID: 21300118, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
+    - {fileID: 21300000, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300002, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300004, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300006, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300008, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300010, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300012, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+    - {fileID: 21300014, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300006, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300004, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300002, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300000, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300014, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300012, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300010, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
+  - {fileID: 21300008, guid: 388dbe26fcb344764812319b1ebcef33, type: 3}
   - {fileID: 21300030, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
   - {fileID: 21300050, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
   - {fileID: 21300078, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
@@ -164,6 +180,14 @@ SpriteAtlas:
   - {fileID: 21300032, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
   - {fileID: 21300048, guid: 51447cde186f74f1eb74e302292f4dfc, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Guardian_3
+  - Guardian_2
+  - Guardian_1
+  - Guardian_0
+  - Guardian_7
+  - Guardian_6
+  - Guardian_5
+  - Guardian_4
   - dungeon-tileset 1_15
   - dungeon-tileset 1_25
   - dungeon-tileset 1_39
