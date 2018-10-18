@@ -822,7 +822,7 @@ Transform:
   - {fileID: 1972383477}
   - {fileID: 248329765}
   m_Father: {fileID: 386707174}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &126396444
 GameObject:
@@ -2110,6 +2110,7 @@ Transform:
   - {fileID: 1519074359}
   - {fileID: 52664149}
   - {fileID: 1116777770}
+  - {fileID: 1016300958}
   - {fileID: 1427845017}
   - {fileID: 1525801983}
   - {fileID: 117836894}
@@ -4804,6 +4805,34 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 987780001}
   m_CullTransparentMesh: 0
+--- !u!1 &1016300957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016300958}
+  m_Layer: 0
+  m_Name: GuardianSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1016300958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1016300957}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.54, y: -4.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 386707174}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025492631
 GameObject:
   m_ObjectHideFlags: 0
@@ -6435,7 +6464,7 @@ Transform:
   - {fileID: 1772426013}
   - {fileID: 1447092693}
   m_Father: {fileID: 386707174}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1428942039
 Prefab:
@@ -20778,7 +20807,7 @@ Transform:
   - {fileID: 1852755587}
   - {fileID: 1277811577}
   m_Father: {fileID: 386707174}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1543572896
 GameObject:
