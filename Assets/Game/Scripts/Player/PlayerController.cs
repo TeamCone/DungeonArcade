@@ -260,7 +260,8 @@ namespace Game.Player
                         {
                             return;
                         }
-                        
+                        MapScreen.Instance.ScoreKill(item.GetOrigin());
+	                    MapScreen.Instance.ScoreDeath(_enumPlayer);
                         Hit();
                         
                         break;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Game.Input;
 using Game.Player;
@@ -9,6 +10,21 @@ using UnityEngine.UI;
 public class MapScreen : MonoBehaviour
 {
 
+	public static MapScreen Instance;
+
+	private void Awake()
+	{
+		if (!Instance)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
+	
     [SerializeField] private GameInputController _gameInputController;
 	private List<IPlayer> _players = new List<IPlayer>();
 	
@@ -136,7 +152,24 @@ public class MapScreen : MonoBehaviour
 		SpawnPlayer(enumPlayer);
 
 	}
+
+	public void ScoreKill(EnumPlayer enumPlayer)
+	{
+		var currentScoreText = _playerContainers[(int) enumPlayer].transform.Find("KillCounter").transform.Find("Text").gameObject.GetComponent<Text>().text;
+		var currentScore = Int32.Parse(currentScoreText);
+		currentScore += 1;
+		
+		_playerContainers[(int) enumPlayer].transform.Find("KillCounter").transform.Find("Text").gameObject.GetComponent<Text>().text = (currentScore < 10 && (currentScore % 10) > 0)?"0"+currentScore.ToString():currentScore.ToString();
+	}
 	
+	public void ScoreDeath(EnumPlayer enumPlayer)
+	{
+		var currentScoreText = _playerContainers[(int) enumPlayer].transform.Find("DeathCounter").transform.Find("Text").gameObject.GetComponent<Text>().text;
+		var currentScore = Int32.Parse(currentScoreText);
+		currentScore += 1;
+		
+		_playerContainers[(int) enumPlayer].transform.Find("DeathCounter").transform.Find("Text").gameObject.GetComponent<Text>().text = (currentScore < 10 && (currentScore % 10) > 0)?"0"+currentScore.ToString():currentScore.ToString();
+	}
 	
 	
 }
