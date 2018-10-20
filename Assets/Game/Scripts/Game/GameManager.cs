@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 	
     public void LoadMapScene(int mapNumber, string unloadSceneName = "", string transitionText = "Loading")
     {
+        PlayerPrefs.SetInt("MapNumber", mapNumber);
+        
         PlayerPrefs.SetString("TransitionText", transitionText);
         PlayerPrefs.SetString("UnloadScene", unloadSceneName);
         PlayerPrefs.SetString("LoadScene", "Map" +mapNumber+ "Scene");
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
     //add the scene to map scene to still show map while showing result
     public void LoadResultScene(string unloadSceneName = "", string transitionText = "Loading")
     {
+        
         PlayerPrefs.SetString("TransitionText", transitionText);
         PlayerPrefs.SetString("UnloadScene", unloadSceneName);
         PlayerPrefs.SetString("LoadScene", "ResultScene");
@@ -62,10 +65,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("TransitionScene", LoadSceneMode.Additive);
     }
 
+    public void ResetMap()
+    {
+        PlayerPrefs.SetInt("MapNumber", 1);
+    }
+    
+    public string GetMapName()
+    {
+        return "Map" +PlayerPrefs.GetInt("MapNumber", 1)+ "Scene";
+    }
     
     
-    
-    
+    public int GetMapNumber()
+    {
+        return PlayerPrefs.GetInt("MapNumber", 1);
+    }
+
     
     
     
@@ -73,9 +88,16 @@ public class GameManager : MonoBehaviour
     public void AddPlayer(EnumPlayer player)
     {
         var players = GetPlayers();
+
+        if (players.list.Contains(player))
+        {
+            return;
+        }
+        
         players.list.Add(player);
         var json = JsonUtility.ToJson(players);
         PlayerPrefs.SetString("Players", json);
+        
     }
 
     public Players GetPlayers()
@@ -137,7 +159,7 @@ public class GameManager : MonoBehaviour
     public void InitGameResults()
     {
         var players = GetPlayers();
-        
+        _gameResults.Clear();
         foreach (var player in players.list)
         {
             _gameResults.Add(new GameResult

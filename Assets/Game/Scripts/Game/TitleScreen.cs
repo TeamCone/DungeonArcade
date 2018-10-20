@@ -9,6 +9,7 @@ public class TitleScreen : MonoBehaviour
 	private void Start()
 	{
 		SoundManager.Instance.PlayBgm("BgmMenu");
+		GameManager.Instance.ClearGameResult();
 		GameManager.Instance.ClearPlayers();
 	}
 

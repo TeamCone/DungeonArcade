@@ -18,16 +18,22 @@ public class WaitingRoomScreen : MonoBehaviour
 	private bool _hasPlayer2Entered;
 	private bool _hasPlayer1Entered;
 	private bool _hasPlayer3Entered;
+	private int _timeCounter;
 
 	// Use this for initialization
 	private void Start ()
 	{
 		Init();
 		GetPlayers();
-		_timeController.SetTimeUpCallback(OnTimeUp);
+		_timeController.SetTimeUpCallback(OnTimeUp, OnTimeCount);
 		_timeController.StartTime();
 	}
-	
+
+	private void OnTimeCount(int timeCounter)
+	{
+		_timeCounter = timeCounter;
+	}
+
 	private void OnTimeUp()
 	{
 		SoundManager.Instance.PlaySfx("SfxTimesupgong");
@@ -38,12 +44,17 @@ public class WaitingRoomScreen : MonoBehaviour
 	private void LoadMapScene()
 	{
 		_timeController.StopTime();
-		GameManager.Instance.LoadMapScene(1, "WaitingRoomScene", "Starting Match");
+		GameManager.Instance.LoadMapScene(1, "WaitingRoomScene", "Loading Arena");
 	}
 	
 	// Update is called once per frame
 	private void Update()
 	{
+		if (_timeCounter == 1)
+		{
+			return;
+		}
+		
 		if (UnityEngine.Input.GetButtonDown("P1Submit"))
 		{
 			if (_hasPlayer1Entered)

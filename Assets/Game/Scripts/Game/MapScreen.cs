@@ -32,11 +32,20 @@ public class MapScreen : MonoBehaviour
 	[SerializeField] private Transform[] _playerSpawns;
 	[SerializeField] private GameObject[] _playerContainers;
 	[SerializeField] private TimeController _timeController;
+	
+
 
 	private List<EnumPlayer> _enumPlayers;
-	
-    void Start () 
-    {
+	private int _timeCounter;
+	private bool _isPlayerEntering;
+	private bool _hasPlayer1Entered;
+	private bool _hasPlayer2Entered;
+	private bool _hasPlayer3Entered;
+	private bool _hasPlayer4Entered;
+
+	void Start ()
+	{
+		_isPlayerEntering = false;
 	    SoundManager.Instance.PlayBgm("BgmBattle");
 	    Init();
 	    GetPlayers();
@@ -47,6 +56,8 @@ public class MapScreen : MonoBehaviour
 
 	private void OnTimerCount(int currentTime)
 	{
+		_timeCounter = currentTime;
+		
 		if (currentTime == 1)
 		{
 			//start slow motion
@@ -69,7 +80,7 @@ public class MapScreen : MonoBehaviour
 		_gameInputController.SetPlayer(EnumPlayer.Player4, null);
 
 		GameManager.Instance.SubmitGameResult();
-		GameManager.Instance.LoadResultScene("Map1Scene","Time's Up!");
+		GameManager.Instance.LoadResultScene(GameManager.Instance.GetMapName(),"Time's Up!");
 	}
 
 
@@ -88,7 +99,7 @@ public class MapScreen : MonoBehaviour
 		{
 			if (_enumPlayers.Any(player => player == EnumPlayer.Player1) == false)
 			{
-				_enumPlayers.Add(EnumPlayer.Player1);
+			
 				ShowPlayer(EnumPlayer.Player1);
 			}
 		}
@@ -97,6 +108,7 @@ public class MapScreen : MonoBehaviour
 		{
 			if (_enumPlayers.Any(player => player == EnumPlayer.Player2) == false)
 			{
+				
 				_enumPlayers.Add(EnumPlayer.Player2);
 				ShowPlayer(EnumPlayer.Player2);
 			}
@@ -106,6 +118,7 @@ public class MapScreen : MonoBehaviour
 		{
 			if (_enumPlayers.Any(player => player == EnumPlayer.Player3) == false)
 			{
+				
 				_enumPlayers.Add(EnumPlayer.Player3);
 				ShowPlayer(EnumPlayer.Player3);
 			}
@@ -115,6 +128,7 @@ public class MapScreen : MonoBehaviour
 		{
 			if (_enumPlayers.Any(player => player == EnumPlayer.Player4) == false)
 			{
+			
 				_enumPlayers.Add(EnumPlayer.Player4);
 				ShowPlayer(EnumPlayer.Player4);
 			}
@@ -135,9 +149,37 @@ public class MapScreen : MonoBehaviour
 	
 	private void OnPlayerJoinGame(EnumPlayer enumPlayer)
 	{
+		if (_timeCounter == 1)
+		{
+			return;
+		}
+
+		if (_isPlayerEntering)
+		{
+			return;
+		}
+
+		_isPlayerEntering = true;
 		_timeController.StopTime();
+
+
+		switch (enumPlayer)
+		{
+			case EnumPlayer.Player1:
+				break;
+			case EnumPlayer.Player2:
+				break;
+			case EnumPlayer.Player3:
+				break;
+			case EnumPlayer.Player4:
+				break;
+			case EnumPlayer.None:
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(enumPlayer), enumPlayer, null);
+		}
 		GameManager.Instance.AddPlayer(enumPlayer);
-		GameManager.Instance.LoadMapScene(1, "Map1Scene", "New Challenger");
+		GameManager.Instance.LoadMapScene(GameManager.Instance.GetMapNumber(), GameManager.Instance.GetMapName(), "New Challenger");
 	}
 	
 	private void ShowPlayer(EnumPlayer enumPlayer)

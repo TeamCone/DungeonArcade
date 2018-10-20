@@ -53,11 +53,11 @@ public class PlayerResultController : MonoBehaviour
 				break;
 			case EnumPlayer.Player3:
 				_characterImage.sprite = _player3Sprite;
-				SetUIColors(new Color32(217, 87, 99,255));
+				SetUIColors(new Color32(251, 242, 54,255));
 				break;
 			case EnumPlayer.Player4:
 				_characterImage.sprite = _player4Sprite;
-				SetUIColors(new Color32(251, 242, 54,255));
+				SetUIColors(new Color32(217, 87, 99,255));
 				break;
 			case EnumPlayer.None:
 				break;

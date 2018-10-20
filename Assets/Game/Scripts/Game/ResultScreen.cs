@@ -17,13 +17,17 @@ public class ResultScreen : MonoBehaviour
 
 		GameManager.Instance.ClearGameResult();
 		await TitleScreenDelay();
-
-		
 	}
 
 	private IEnumerator TitleScreenDelay()
 	{
 		yield return new WaitForSeconds(3);
+		if (GameManager.Instance.GetMapNumber() < 5)
+		{
+			GameManager.Instance.LoadMapScene(GameManager.Instance.GetMapNumber() + 1, "ResultScene", "Loading Next Arena");
+			yield break;
+		}
+		
 		GameManager.Instance.LoadTitleScene("ResultScene");
 	} 
 }
