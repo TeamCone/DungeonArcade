@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114594242609329156}
   - component: {fileID: 114612377349461730}
   - component: {fileID: 61804338603483142}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: SwordItem
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.53333336, y: 0.53333336}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.53333336, y: 0.53333336}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

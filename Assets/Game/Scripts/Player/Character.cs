@@ -48,10 +48,14 @@ namespace Game.Scripts
                 return false;
             }
 
-            if (item.GetOrigin() == _player)
+            if (item != null)
             {
-                return false;
+                if (item.GetOrigin() == _player)
+                {
+                    return false;
+                }
             }
+            
             
             _playerState = EnumPlayerState.Hit;
 

@@ -14,6 +14,7 @@ namespace Game.Player
         private SpriteRenderer _spriteRenderer;
         private float _horizontalMovement;
         
+        
         [SerializeField]
         private float _moveSpeed = 5f;
         [SerializeField]
@@ -27,8 +28,12 @@ namespace Game.Player
         
         [SerializeField] private LayerMask _springLayerMask;
         [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private LayerMask _itemLayerMask;
         [SerializeField] private Transform _groundCheck;
         [SerializeField] private Transform _itemHolder;
+        
+        [SerializeField] private GameObject _hitParticle;
+      
        
         private bool _isGrounded;
         private bool _isSpringJump;
@@ -62,6 +67,7 @@ namespace Game.Player
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _circleCollider2D = GetComponent<CircleCollider2D>();
             _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+            _hitParticle.SetActive(false);
             
             
             //Create Character Object
@@ -74,8 +80,17 @@ namespace Game.Player
             {
                 return;
             }
+
+            if (Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayerMask) ||
+                Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _itemLayerMask))
+            {
+                _isGrounded = true;
+            }
+            else
+            {
+                _isGrounded = false;
+            }
             
-            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayerMask);
             _animator.SetBool(AnimatorIsGrounded, _isGrounded);
             
             _rigidbody2D.velocity = new Vector3(_horizontalMovement, _rigidbody2D.velocity.y);
@@ -191,6 +206,7 @@ namespace Game.Player
 
         private async void Hit()
         {
+            _hitParticle.SetActive(true);
             _animator.SetBool(AnimatorIsDead, true);
             _animator.SetTrigger(AnimatorHit);
             _rigidbody2D.velocity = new Vector3(0, _rigidbody2D.velocity.y);
@@ -218,6 +234,7 @@ namespace Game.Player
             _animator.SetBool(AnimatorIsDead, false);
             _circleCollider2D.enabled = false;
             _capsuleCollider2D.enabled = true;
+            _hitParticle.SetActive(false);
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -273,6 +290,22 @@ namespace Game.Player
             
                 
             }
+
+            if (other.gameObject.CompareTag("Guardian"))
+            {
+                if (_isHit)
+                {
+                    return;
+                }
+                
+                if (_character.IsCharacterHit(null) == false)
+                {
+                    return;
+                }
+                
+                Hit();
+            }
+            
         }
         
     }

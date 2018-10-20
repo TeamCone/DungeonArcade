@@ -53,12 +53,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4359128980637504}
-  - component: {fileID: 114356337632830492}
   - component: {fileID: 212272693155465478}
   - component: {fileID: 50874188702474224}
   - component: {fileID: 70256666755318212}
   - component: {fileID: 95486846978475378}
   - component: {fileID: 58779713329667476}
+  - component: {fileID: 114836266203968440}
   m_Layer: 10
   m_Name: Player1
   m_TagString: Player
@@ -121,8 +121,8 @@ Transform:
   m_Children:
   - {fileID: 4506476333671852}
   - {fileID: 4357953901144966}
-  - {fileID: 4844155325848950}
   - {fileID: 4941446055727574}
+  - {fileID: 4844155325848950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,7 +150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4359128980637504}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4941446055727574
 Transform:
@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4359128980637504}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!50 &50874188702474224
 Rigidbody2D:
@@ -233,7 +233,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114356337632830492
+--- !u!114 &114836266203968440
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594731540591116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a55a0109b3c428c9623329801330271, type: 3}
+  m_Script: {fileID: 11500000, guid: 33362be672ba14da0a706a4784a136c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 4
@@ -254,8 +254,12 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  _itemLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   _groundCheck: {fileID: 4506476333671852}
   _itemHolder: {fileID: 4357953901144966}
+  _hitParticle: {fileID: 1253412405478314}
 --- !u!198 &198378522254948222
 ParticleSystem:
   m_ObjectHideFlags: 1
