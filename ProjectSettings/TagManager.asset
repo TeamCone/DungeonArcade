@@ -8,6 +8,7 @@ TagManager:
   - PickItem
   - Item
   - Platform
+  - Guardian
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Ground
   - Spring
   - Player
-  - 
-  - 
+  - Items
+  - Guardian
   - 
   - 
   - 
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2342652757
+    locked: 0
+  - name: Guardian
+    uniqueID: 1408348989
     locked: 0

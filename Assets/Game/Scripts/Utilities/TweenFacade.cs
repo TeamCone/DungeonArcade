@@ -43,9 +43,17 @@ public static class TweenFacade
     }
 
     
-    public static void Move(Transform transform, Vector3 position, float duration, Action onComplete = null)
+    public static void LocalMove(Transform transform, Vector3 position, float duration, Action onComplete = null,bool isSpeedbased =false)
     {
-        transform.DOLocalMove(position, duration).SetEase(Ease.Linear).OnComplete(delegate
+        transform.DOLocalMove(position, duration).SetEase(Ease.Linear).SetSpeedBased(isSpeedbased).OnComplete(delegate
+        {
+            onComplete?.Invoke();
+        });
+    }
+    
+    public static void Move(Transform transform, Vector3 position, float duration, Action onComplete = null, bool isSpeedbased =false)
+    {
+        transform.DOLocalMove(position, duration).SetEase(Ease.Linear).SetSpeedBased(isSpeedbased).OnComplete(delegate
         {
             onComplete?.Invoke();
         });
