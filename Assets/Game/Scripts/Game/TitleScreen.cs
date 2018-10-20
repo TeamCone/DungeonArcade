@@ -8,6 +8,7 @@ public class TitleScreen : MonoBehaviour
 
 	private void Start()
 	{
+		SoundManager.Instance.PlayBgm("BgmMenu");
 		GameManager.Instance.ClearPlayers();
 	}
 
@@ -20,31 +21,29 @@ public class TitleScreen : MonoBehaviour
 		
 		if (Input.GetButtonDown("P1Submit"))
 		{
-			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player1);
 		}
 		
 		else if (Input.GetButtonDown("P2Submit"))
 		{
-			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player2);
 		}
 		
 		else if (Input.GetButtonDown("P3Submit"))
 		{
-			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player3);
 		}
 		
 		else if (Input.GetButtonDown("P4Submit"))
 		{
-			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player4);
 		}
 	}
 
 	private void LoadWaitingRoom(EnumPlayer enumPlayer)
 	{
+		_hasPlayerStarted = true;
+		SoundManager.Instance.PlaySfx("SfxTimechime1");
 		GameManager.Instance.AddPlayer(enumPlayer);
 		
 		GameManager.Instance.LoadWaitingRoomScene("TitleScene");

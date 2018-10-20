@@ -121,6 +121,7 @@ namespace Game.Player
                 return;
             }
             
+            SoundManager.Instance.PlaySfx("SfxJump");
             _rigidbody2D.velocity = new Vector3(_rigidbody2D.velocity.x, _jumpHeight);
             _animator.SetTrigger(AnimatorJump);
         }
@@ -147,6 +148,7 @@ namespace Game.Player
                 return;
             }
             
+            SoundManager.Instance.PlaySfx("SfxThrow");
             _animator.SetTrigger(AnimatorThrow);
             _character.ThrowItem(_isFacingRight);
 
@@ -206,6 +208,8 @@ namespace Game.Player
 
         private async void Hit()
         {
+            SoundManager.Instance.PlaySfx("SfxHit");
+            MapScreen.Instance.ScoreDeath(_enumPlayer);
             _hitParticle.SetActive(true);
             _animator.SetBool(AnimatorIsDead, true);
             _animator.SetTrigger(AnimatorHit);
@@ -247,6 +251,11 @@ namespace Game.Player
             OnCollide(other);
         }
 
+        public void RunSfx()
+        {
+            SoundManager.Instance.PlaySfx("SfxStep");
+        }
+
         private void OnCollide(Collision2D other)
         {
             if (other.gameObject.CompareTag("Item"))
@@ -264,6 +273,7 @@ namespace Game.Player
                         {
                             return;
                         }
+                        SoundManager.Instance.PlaySfx("SfxPickup");
                         _character.PickUpItem(item);
                         _character.CurrentItem().SetOrigin(_enumPlayer, _itemHolder);
                         break;
@@ -278,7 +288,6 @@ namespace Game.Player
                             return;
                         }
                         MapScreen.Instance.ScoreKill(item.GetOrigin());
-	                    MapScreen.Instance.ScoreDeath(_enumPlayer);
                         Hit();
                         
                         break;
@@ -303,6 +312,7 @@ namespace Game.Player
                     return;
                 }
                 
+               
                 Hit();
             }
             

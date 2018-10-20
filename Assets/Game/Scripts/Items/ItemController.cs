@@ -25,13 +25,17 @@ public class ItemController : MonoBehaviour, IItem
 	private void CreateRigidBody2D()
 	{
 		_boxCollider2D.enabled = true;
-		_rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+		if (_rigidbody2D == null)
+		{
+			_rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+		}
+		
 		_rigidbody2D.mass = 5;
 		_rigidbody2D.gravityScale = 5;
 		_rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 		_rigidbody2D.sleepMode = RigidbodySleepMode2D.NeverSleep;
 		_rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
-		
+
 	}
 
 	//temporary fix
@@ -41,6 +45,19 @@ public class ItemController : MonoBehaviour, IItem
 		{
 			SetState(EnumItemState.PICKED);
 		}
+		else
+		{
+			if (_origin == EnumPlayer.None)
+			{
+				SetState(EnumItemState.IDLE);
+			}
+			else
+			{
+				SetState(EnumItemState.MOVING);
+			}
+		}
+		
+	
 	}
 
 
@@ -82,12 +99,14 @@ public class ItemController : MonoBehaviour, IItem
 	public void RemoveItem()
 	{
 		_transform.parent = null;
+		
 		CreateRigidBody2D();
 
 		if (IsThrowable() == false)
 		{
 			Debug.Log("ITEM IS TREASURE");
 			SetState(EnumItemState.IDLE);
+			_origin = EnumPlayer.None;
 		}
 	}
 
@@ -130,8 +149,17 @@ public class ItemController : MonoBehaviour, IItem
 
 	private void ItemToIdle()
 	{
-		_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+		if (_rigidbody2D == null)
+		{
+			CreateRigidBody2D();
+		}
+		else
+		{
+			_rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+		}
+		
 		SetState(EnumItemState.IDLE);
+		_origin = EnumPlayer.None;
 	}
 	
 	

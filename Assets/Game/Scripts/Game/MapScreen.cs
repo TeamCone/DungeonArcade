@@ -37,7 +37,7 @@ public class MapScreen : MonoBehaviour
 	
     void Start () 
     {
-	  
+	    SoundManager.Instance.PlayBgm("BgmBattle");
 	    Init();
 	    GetPlayers();
 	    _timeController.SetTimeUpCallback(OnTimeUp);
@@ -50,6 +50,7 @@ public class MapScreen : MonoBehaviour
 	//when time up, remove controls of each player and load result screen
 	private void OnTimeUp()
 	{
+		SoundManager.Instance.PlaySfx("SfxTimesupgong");
 		_gameInputController.SetPlayer(EnumPlayer.Player1, null);
 		_gameInputController.SetPlayer(EnumPlayer.Player2, null);
 		_gameInputController.SetPlayer(EnumPlayer.Player3, null);
@@ -57,7 +58,7 @@ public class MapScreen : MonoBehaviour
 
 		var gameResults = GetGameResult();
 		GameManager.Instance.SetGameResult(gameResults);
-		GameManager.Instance.LoadResultScene(transitionText:"Time's Up!");
+		GameManager.Instance.LoadResultScene("Map1Scene","Time's Up!");
 	}
 
 	private List<GameResult> GetGameResult()
@@ -155,6 +156,12 @@ public class MapScreen : MonoBehaviour
 
 	public void ScoreKill(EnumPlayer enumPlayer)
 	{
+		if (enumPlayer == EnumPlayer.None)
+		{
+			return;
+		}
+		
+		Debug.Log("SCORE KILL " +enumPlayer);
 		var currentScoreText = _playerContainers[(int) enumPlayer].transform.Find("KillCounter").transform.Find("Text").gameObject.GetComponent<Text>().text;
 		var currentScore = Int32.Parse(currentScoreText);
 		currentScore += 1;
@@ -164,6 +171,11 @@ public class MapScreen : MonoBehaviour
 	
 	public void ScoreDeath(EnumPlayer enumPlayer)
 	{
+		if (enumPlayer == EnumPlayer.None)
+		{
+			return;
+		}
+		
 		var currentScoreText = _playerContainers[(int) enumPlayer].transform.Find("DeathCounter").transform.Find("Text").gameObject.GetComponent<Text>().text;
 		var currentScore = Int32.Parse(currentScoreText);
 		currentScore += 1;

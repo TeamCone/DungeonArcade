@@ -64,7 +64,6 @@ namespace Game.Scripts
                 //when carrying item, remove from player
                 if (_item.GetState() == EnumItemState.PICKED)
                 {
-                    Debug.Log("REMOVING ITEM ");
                     _item.RemoveItem(); 
                 }
                

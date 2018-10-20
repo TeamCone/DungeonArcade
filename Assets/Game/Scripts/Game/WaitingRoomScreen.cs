@@ -14,7 +14,11 @@ public class WaitingRoomScreen : MonoBehaviour
 	[SerializeField] private TimeController _timeController;
 
 	private List<EnumPlayer> _players;
-	
+	private bool _hasPlayer4Entered;
+	private bool _hasPlayer2Entered;
+	private bool _hasPlayer1Entered;
+	private bool _hasPlayer3Entered;
+
 	// Use this for initialization
 	private void Start ()
 	{
@@ -26,6 +30,7 @@ public class WaitingRoomScreen : MonoBehaviour
 	
 	private void OnTimeUp()
 	{
+		SoundManager.Instance.PlaySfx("SfxTimesupgong");
 	    _timeController.StopTime();
 		LoadMapScene();
 	}
@@ -41,24 +46,49 @@ public class WaitingRoomScreen : MonoBehaviour
 	{
 		if (UnityEngine.Input.GetButtonDown("P1Submit"))
 		{
+			if (_hasPlayer1Entered)
+			{
+				return;
+			}
+
+			SoundManager.Instance.PlaySfx("SfxTimechime1");
 			GameManager.Instance.AddPlayer(EnumPlayer.Player1);
 			GetPlayers();
 		}
 		
 		if (UnityEngine.Input.GetButtonDown("P2Submit"))
 		{
+			if (_hasPlayer2Entered)
+			{
+				return;
+			}
+
+			SoundManager.Instance.PlaySfx("SfxTimechime1");
 			GameManager.Instance.AddPlayer(EnumPlayer.Player2);
 			GetPlayers();
 		}
 		
 		if (UnityEngine.Input.GetButtonDown("P3Submit"))
 		{
+			if (_hasPlayer3Entered)
+			{
+				return;
+			}
+
+			SoundManager.Instance.PlaySfx("SfxTimechime1");
 			GameManager.Instance.AddPlayer(EnumPlayer.Player3);
 			GetPlayers();
 		}
 		
 		if (UnityEngine.Input.GetButtonDown("P4Submit"))
 		{
+			if (_hasPlayer4Entered)
+			{
+				return;
+			}
+
+			
+			SoundManager.Instance.PlaySfx("SfxTimechime1");
 			GameManager.Instance.AddPlayer(EnumPlayer.Player4);
 			GetPlayers();
 		}
@@ -72,6 +102,7 @@ public class WaitingRoomScreen : MonoBehaviour
 		{
 			if (_players.Any(player => player == EnumPlayer.Player1) == false)
 			{
+				_hasPlayer1Entered = true;
 				_players.Add(EnumPlayer.Player1);
 				ShowPlayer(EnumPlayer.Player1);
 			}
@@ -81,6 +112,7 @@ public class WaitingRoomScreen : MonoBehaviour
 		{
 			if (_players.Any(player => player == EnumPlayer.Player2) == false)
 			{
+				_hasPlayer2Entered = true;
 				_players.Add(EnumPlayer.Player2);
 				ShowPlayer(EnumPlayer.Player2);
 			}
@@ -90,6 +122,7 @@ public class WaitingRoomScreen : MonoBehaviour
 		{
 			if (_players.Any(player => player == EnumPlayer.Player3) == false)
 			{
+				_hasPlayer3Entered = true;
 				_players.Add(EnumPlayer.Player3);
 				ShowPlayer(EnumPlayer.Player3);
 			}
@@ -99,6 +132,7 @@ public class WaitingRoomScreen : MonoBehaviour
 		{
 			if (_players.Any(player => player == EnumPlayer.Player4) == false)
 			{
+				_hasPlayer4Entered = true;
 				_players.Add(EnumPlayer.Player4);
 				ShowPlayer(EnumPlayer.Player4);
 			}
