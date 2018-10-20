@@ -12,5 +12,6 @@ namespace Game.Player
         void Throw(bool isFacingRight);
         void RemoveItem();
         bool HasHolder();
+        string GetItemName();
     }
 }

@@ -67,6 +67,11 @@ public class ItemController : MonoBehaviour, IItem
 		return _transform.parent != null;
 	}
 
+	public string GetItemName()
+	{
+		return _throwItem.Name();
+	}
+
 	public bool IsThrowable()
 	{
 		return _throwItem.Name() != "TreasureItem";

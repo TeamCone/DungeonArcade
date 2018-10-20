@@ -23,6 +23,6 @@ public class StarItem : MonoBehaviour, IThrowItem
 
 	public string Name()
 	{
-		return name;
+		return "StarItem";
 	}
 }

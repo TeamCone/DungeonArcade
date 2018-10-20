@@ -216,6 +216,8 @@ MonoBehaviour:
   _crownImage: {fileID: 114032367441405286}
   _killsText: {fileID: 114697026340819632}
   _deathsText: {fileID: 114476200507866830}
+  _deathsCounterImage: {fileID: 114562546483941102}
+  _killsCounterImage: {fileID: 114538597592179834}
   _player1Sprite: {fileID: 21300000, guid: 945ced03bee284dcaa993605fdd146e7, type: 3}
   _player2Sprite: {fileID: 21300106, guid: 945ced03bee284dcaa993605fdd146e7, type: 3}
   _player3Sprite: {fileID: 21300212, guid: 945ced03bee284dcaa993605fdd146e7, type: 3}

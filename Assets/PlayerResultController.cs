@@ -12,6 +12,8 @@ public class PlayerResultController : MonoBehaviour
 	
 	[SerializeField] private Text _killsText;
 	[SerializeField] private Text _deathsText;
+	[SerializeField] private Image _deathsCounterImage;
+	[SerializeField] private Image _killsCounterImage;
 	
 	[SerializeField] private Sprite _player1Sprite;
 	[SerializeField] private Sprite _player2Sprite;
@@ -27,6 +29,14 @@ public class PlayerResultController : MonoBehaviour
 		_killsText.text = "";
 		_deathsText.text = "";
 	}
+
+	private void SetUIColors(Color32 color32)
+	{
+		_killsText.color = color32;
+		_deathsText.color = color32;
+		_deathsCounterImage.color = color32;
+		_killsCounterImage.color = color32;
+	}
 	
 
 	public void SetPlayerResults(GameResult gameResult)
@@ -35,15 +45,19 @@ public class PlayerResultController : MonoBehaviour
 		{
 			case EnumPlayer.Player1:
 				_characterImage.sprite = _player1Sprite;
+				SetUIColors(new Color32(143, 151, 74,255));
 				break;
 			case EnumPlayer.Player2:
 				_characterImage.sprite = _player2Sprite;
+				SetUIColors(new Color32(91, 110, 225,255));
 				break;
 			case EnumPlayer.Player3:
 				_characterImage.sprite = _player3Sprite;
+				SetUIColors(new Color32(217, 87, 99,255));
 				break;
 			case EnumPlayer.Player4:
 				_characterImage.sprite = _player4Sprite;
+				SetUIColors(new Color32(251, 242, 54,255));
 				break;
 			case EnumPlayer.None:
 				break;

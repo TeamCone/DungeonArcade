@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Game.Player;
 using Game.Scripts.Player;
 using UnityEngine;
@@ -7,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private List<GameResult> _gameResults = new List<GameResult>();
 
     private void Awake()
     {
@@ -103,16 +107,92 @@ public class GameManager : MonoBehaviour
 
     public List<GameResult> GetGameResult()
     {
+        
         var json = PlayerPrefs.GetString("GameResults", "");
         var gameResults = JsonUtility.FromJson<GameResults>(json);
         return gameResults.Results;
     }
 	
-    public void SetGameResult(List<GameResult> gameResults)
+    private void SetGameResult(List<GameResult> gameResults)
     {
         var result = new GameResults(gameResults);
         var json = JsonUtility.ToJson(result);
         PlayerPrefs.SetString("GameResults", json);
         Debug.LogFormat("Game Result in Prefs: {0}", json);
     }
+
+    public void SubmitGameResult()
+    {
+        SetGameResult(_gameResults);
+    }
+    public void ClearGameResult()
+    {
+        _gameResults.Clear();
+        var result = GetGameResult();
+        result.Clear();
+        SetGameResult(result);
+    }
+    
+
+    public void InitGameResults()
+    {
+        var players = GetPlayers();
+        
+        foreach (var player in players.list)
+        {
+            _gameResults.Add(new GameResult
+            {
+                Player = (int)player,
+                IsWinner = false,
+                Deaths = 0,
+                Kills = 0
+            });
+        }
+    }
+
+    public void AddKills(EnumPlayer enumPlayer)
+    {
+        
+        try
+        {
+            var gameResult = _gameResults.First(x => x.Player == (int) enumPlayer);
+            gameResult.Kills++;
+        }
+        catch (Exception e)
+        {
+        }
+      
+    }
+    
+    public void AddDeaths(EnumPlayer enumPlayer)
+    {
+        try
+        {
+            var gameResult = _gameResults.First(x => x.Player == (int) enumPlayer);
+            gameResult.Deaths++;
+        }
+        catch (Exception e)
+        {
+        }
+     
+    }
+
+    public void HasTreasure(EnumPlayer enumPlayer, bool hasTreasure)
+    {
+        try
+        {
+            var gameResult = _gameResults.First(x => x.Player == (int) enumPlayer);
+            gameResult.IsWinner = hasTreasure;
+        } catch (Exception e)
+        {
+        }
+        
+
+       
+        
+    }
+    
+    
+    
+    
 }

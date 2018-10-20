@@ -23,6 +23,6 @@ public class AxeItem : MonoBehaviour, IThrowItem
 
 	public string Name()
 	{
-		return name;
+		return "AxeItem";
 	}
 }

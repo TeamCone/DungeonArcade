@@ -56,26 +56,8 @@ public class MapScreen : MonoBehaviour
 		_gameInputController.SetPlayer(EnumPlayer.Player3, null);
 		_gameInputController.SetPlayer(EnumPlayer.Player4, null);
 
-		var gameResults = GetGameResult();
-		GameManager.Instance.SetGameResult(gameResults);
+		GameManager.Instance.SubmitGameResult();
 		GameManager.Instance.LoadResultScene("Map1Scene","Time's Up!");
-	}
-
-	private List<GameResult> GetGameResult()
-	{
-		var gameResults = new List<GameResult>();
-		foreach (var player in _players)
-		{
-			Debug.LogFormat("Player {0}, Winner: {1}", player.GetPlayerId(), player.IsWinner());
-			gameResults.Add(new GameResult
-			{
-				Player = (int)player.GetPlayerId(),
-				IsWinner = player.IsWinner(),
-				Deaths = 10,
-				Kills = 10
-			});
-		}
-		return gameResults;
 	}
 
 
@@ -129,6 +111,7 @@ public class MapScreen : MonoBehaviour
 	
 	private void Init()
 	{
+		GameManager.Instance.InitGameResults();
 		_enumPlayers = new List<EnumPlayer>();
 		_gameInputController.SetPlayerJoinGame(OnPlayerJoinGame);
 		for (var i = 0; i < 4; i++)
@@ -156,6 +139,7 @@ public class MapScreen : MonoBehaviour
 
 	public void ScoreKill(EnumPlayer enumPlayer)
 	{
+		GameManager.Instance.AddKills(enumPlayer);
 		if (enumPlayer == EnumPlayer.None)
 		{
 			return;
@@ -171,6 +155,7 @@ public class MapScreen : MonoBehaviour
 	
 	public void ScoreDeath(EnumPlayer enumPlayer)
 	{
+		GameManager.Instance.AddDeaths(enumPlayer);
 		if (enumPlayer == EnumPlayer.None)
 		{
 			return;

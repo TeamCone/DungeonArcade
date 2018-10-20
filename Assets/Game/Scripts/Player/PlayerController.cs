@@ -98,6 +98,22 @@ namespace Game.Player
             _animator.SetFloat(AnimatorRun, Mathf.Abs(_horizontalMovement));
           
             _animator.SetBool(AnimatorHasItem, _character.HasItem());
+
+            if (_character.HasItem())
+            {
+                if (_character.CurrentItem().GetItemName() == "TreasureItem")
+                {
+                    GameManager.Instance.HasTreasure(_enumPlayer, true);
+                }
+                else
+                {
+                    GameManager.Instance.HasTreasure(_enumPlayer, false);
+                }
+            }
+            else
+            {
+                GameManager.Instance.HasTreasure(_enumPlayer, false);
+            }
          
             
             _isSpringJump = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _springLayerMask);
@@ -317,6 +333,10 @@ namespace Game.Player
             }
             
         }
-        
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+        }
     }
 }

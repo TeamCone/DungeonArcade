@@ -11,6 +11,6 @@ public class TreasureItem : MonoBehaviour, IThrowItem
 
 	public string Name()
 	{
-		return name;
+		return "TreasureItem";
 	}
 }

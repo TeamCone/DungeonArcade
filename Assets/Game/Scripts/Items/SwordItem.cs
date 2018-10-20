@@ -27,6 +27,6 @@ public class SwordItem : MonoBehaviour, IThrowItem
 	
 	public string Name()
 	{
-		return name;
+		return "SwordItem";
 	}
 }

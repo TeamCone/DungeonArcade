@@ -15,8 +15,10 @@ public class ResultScreen : MonoBehaviour
 			playerResult.SetPlayerResults(gameResult);
 		}
 
+		GameManager.Instance.ClearGameResult();
 		await TitleScreenDelay();
 
+		
 	}
 
 	private IEnumerator TitleScreenDelay()

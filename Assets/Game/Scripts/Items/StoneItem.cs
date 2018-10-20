@@ -23,6 +23,6 @@ public class StoneItem : MonoBehaviour, IThrowItem
 
 	public string Name()
 	{
-		return name;
+		return "StoneItem";
 	}
 }
