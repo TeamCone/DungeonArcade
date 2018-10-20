@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Game.Input;
 using Game.Player;
 using Game.Scripts.Game;
 
@@ -12,6 +13,7 @@ public class WaitingRoomScreen : MonoBehaviour
 	[SerializeField] private Transform[] _playerSpawns;
 	[SerializeField] private GameObject[] _playerContainers;
 	[SerializeField] private TimeController _timeController;
+	[SerializeField] private GameInputController _gameInputController;
 
 	private List<EnumPlayer> _players;
 	private bool _hasPlayer4Entered;
@@ -172,7 +174,8 @@ public class WaitingRoomScreen : MonoBehaviour
 		_pressStartImages[(int) enumPlayer].gameObject.SetActive(false);
 		_playerContainers[(int) enumPlayer].gameObject.SetActive(true);
 		
-		GameManager.Instance.SpawnPlayer(enumPlayer, _playerSpawns[(int)enumPlayer]);
+		var player = GameManager.Instance.SpawnPlayer(enumPlayer, _playerSpawns[(int)enumPlayer]);
+		_gameInputController.SetPlayer(enumPlayer, player);
 		
 	}
 }
