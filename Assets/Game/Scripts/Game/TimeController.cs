@@ -21,7 +21,8 @@ namespace Game.Scripts.Game
         private bool _isPaused;
 
         private Action _onTimeUpCallback;
-        
+        private Action<int> _onTimerCount;
+
         private void Start()
         {
             
@@ -42,11 +43,13 @@ namespace Game.Scripts.Game
             _sprites = Resources.LoadAll<Sprite>("dungeon-tileset 1");
             _timer = new GameTimer();
             _timer.StartTime(_gameTime, PrintTimer, _onTimeUpCallback);
+           
         }
 
-        public void SetTimeUpCallback(Action onTimeUpCallback)
+        public void SetTimeUpCallback(Action onTimeUpCallback, Action<int> onTimerCount = null)
         {
             _onTimeUpCallback = onTimeUpCallback;
+            _onTimerCount = onTimerCount;
         }
 
         public void StopTime()
@@ -69,6 +72,7 @@ namespace Game.Scripts.Game
 
         private void PrintTimer(int currentTime)
         {
+            _onTimerCount?.Invoke(currentTime);
             int[] values =
             {
                 currentTime / 100 % 10,

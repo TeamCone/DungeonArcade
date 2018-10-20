@@ -40,16 +40,28 @@ public class MapScreen : MonoBehaviour
 	    SoundManager.Instance.PlayBgm("BgmBattle");
 	    Init();
 	    GetPlayers();
-	    _timeController.SetTimeUpCallback(OnTimeUp);
+	    _timeController.SetTimeUpCallback(OnTimeUp, OnTimerCount);
 	    _timeController.StartTime();
 	    SoundManager.Instance.PlayBgm("BgmBattle");
     }
+
+	private void OnTimerCount(int currentTime)
+	{
+		if (currentTime == 1)
+		{
+			//start slow motion
+			Time.timeScale = 0.3f;
+		}
+	}
 
 
 
 	//when time up, remove controls of each player and load result screen
 	private void OnTimeUp()
 	{
+		//stop slow motion
+		Time.timeScale = 1f;
+		
 		SoundManager.Instance.PlaySfx("SfxTimesupgong");
 		_gameInputController.SetPlayer(EnumPlayer.Player1, null);
 		_gameInputController.SetPlayer(EnumPlayer.Player2, null);

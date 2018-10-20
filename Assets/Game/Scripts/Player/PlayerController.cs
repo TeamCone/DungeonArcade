@@ -251,7 +251,7 @@ namespace Game.Player
             yield return new WaitForSeconds(HitTime);
             _isHit = false;
             _character.SetState(EnumPlayerState.Invulnerable);
-            _animator.SetBool(AnimatorIsDead, false);
+            _animator?.SetBool(AnimatorIsDead, false);
             _circleCollider2D.enabled = false;
             _capsuleCollider2D.enabled = true;
             _hitParticle.SetActive(false);
@@ -334,9 +334,5 @@ namespace Game.Player
             
         }
 
-        private void OnDisable()
-        {
-            StopAllCoroutines();
-        }
     }
 }
