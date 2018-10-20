@@ -21,13 +21,13 @@ public class ResultScreen : MonoBehaviour
 
 	private IEnumerator TitleScreenDelay()
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(2);
 		if (GameManager.Instance.GetMapNumber() < 5)
 		{
 			GameManager.Instance.LoadMapScene(GameManager.Instance.GetMapNumber() + 1, "ResultScene", "Loading Next Arena");
 			yield break;
 		}
 		
-		GameManager.Instance.LoadTitleScene("ResultScene");
+		GameManager.Instance.LoadOverallResultScene("ResultScene");
 	} 
 }

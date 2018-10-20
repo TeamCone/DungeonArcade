@@ -143,7 +143,12 @@ public class ItemController : MonoBehaviour, IItem
 		
 		if (other.gameObject.CompareTag("Player"))
 		{
-			if (other.gameObject.GetComponent<PlayerController>().EnumPlayer == _origin || other.gameObject.GetComponent<PlayerController>().EnumPlayer == EnumPlayer.None)
+			if (other.gameObject.GetComponent<PlayerController>().EnumPlayer == _origin)
+			{
+				return;
+			}
+
+			if (other.gameObject.GetComponent<PlayerController>().EnumPlayer == EnumPlayer.None)
 			{
 				return;
 			}

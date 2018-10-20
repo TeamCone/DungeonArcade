@@ -41,9 +41,12 @@ public class PlayerResultController : MonoBehaviour
 
 	public void SetPlayerResults(GameResult gameResult)
 	{
+		GameManager.Instance.AddWinner((EnumPlayer)gameResult.Player);
+		
 		switch ((EnumPlayer)gameResult.Player)
 		{
 			case EnumPlayer.Player1:
+				
 				_characterImage.sprite = _player1Sprite;
 				SetUIColors(new Color32(143, 151, 74,255));
 				break;

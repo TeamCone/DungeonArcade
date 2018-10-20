@@ -64,7 +64,18 @@ public class GameManager : MonoBehaviour
         
         SceneManager.LoadScene("TransitionScene", LoadSceneMode.Additive);
     }
-
+    
+    public void LoadOverallResultScene(string unloadSceneName = "", string transitionText = "Loading")
+    {
+        
+        PlayerPrefs.SetString("TransitionText", transitionText);
+        PlayerPrefs.SetString("UnloadScene", unloadSceneName);
+        PlayerPrefs.SetString("LoadScene", "OverallResultScene");
+        
+        SceneManager.LoadScene("TransitionScene", LoadSceneMode.Additive);
+    }
+    
+ 
     public void ResetMap()
     {
         PlayerPrefs.SetInt("MapNumber", 1);
@@ -213,8 +224,44 @@ public class GameManager : MonoBehaviour
        
         
     }
+
+
+    public EnumPlayer GetOverallWinner()
+    {
+        return GetOverAllResult().GetOverAllWinner();
+    }
     
+    public void AddWinner(EnumPlayer enumPlayer)
+    {
+        var overAllResult = GetOverAllResult();
+        overAllResult.AddWinner(enumPlayer);  
+        SetOverAllResult(overAllResult);
+       
+    }
+
+    public void ClearOverAllWinner()
+    {
+        var overAllResult = GetOverAllResult();
+        overAllResult = new OverAllResult();
+        SetOverAllResult(overAllResult);
+    }
+
     
+    private void SetOverAllResult(OverAllResult overAllResult)
+    {
+        var newJson = JsonUtility.ToJson(overAllResult);
+        PlayerPrefs.SetString("OverAllResult", newJson);
+    }
     
-    
+    private OverAllResult GetOverAllResult()
+    {
+        var json = PlayerPrefs.GetString("OverAllResult", "");
+        var overAllResult = new OverAllResult();
+        if (string.IsNullOrEmpty(json) == false)
+        {
+            overAllResult = JsonUtility.FromJson<OverAllResult>(json);
+        }
+
+        return overAllResult;
+    }
 }
