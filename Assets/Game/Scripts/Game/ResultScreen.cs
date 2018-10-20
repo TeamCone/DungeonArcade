@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using Game.Player;
 using UnityEngine;
 
 public class ResultScreen : MonoBehaviour
@@ -9,6 +12,14 @@ public class ResultScreen : MonoBehaviour
 	{
 		var gameResults = GameManager.Instance.GetGameResult();
 
+
+		var isThereWinner = gameResults.Any(x => x.IsWinner);
+
+		if (isThereWinner == false)
+		{
+			GameManager.Instance.AddWinner(EnumPlayer.None);
+		}
+		
 		foreach (var gameResult in gameResults)
 		{
 			var playerResult = Instantiate(ResourceFacade.LoadPrefab("PlayerResult"), _resultContainer).GetComponent<PlayerResultController>();

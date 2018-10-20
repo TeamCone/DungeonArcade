@@ -41,7 +41,6 @@ public class PlayerResultController : MonoBehaviour
 
 	public void SetPlayerResults(GameResult gameResult)
 	{
-		GameManager.Instance.AddWinner((EnumPlayer)gameResult.Player);
 		
 		switch ((EnumPlayer)gameResult.Player)
 		{
@@ -71,6 +70,7 @@ public class PlayerResultController : MonoBehaviour
 		
 		if (gameResult.IsWinner)
 		{
+			GameManager.Instance.AddWinner((EnumPlayer)gameResult.Player);
 			_crownImage.gameObject.SetActive(true);
 		}
 		else
