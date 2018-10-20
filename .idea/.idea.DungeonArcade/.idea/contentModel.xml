@@ -76,6 +76,7 @@
             </e>
           </e>
         </e>
+        <e p="PlayerResultController.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="AsyncAwaitUtil" t="Include">
             <e p="Source" t="Include">
