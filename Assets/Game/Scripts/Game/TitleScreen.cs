@@ -20,21 +20,25 @@ public class TitleScreen : MonoBehaviour
 		
 		if (Input.GetButtonDown("P1Submit"))
 		{
+			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player1);
 		}
 		
-		if (Input.GetButtonDown("P2Submit"))
+		else if (Input.GetButtonDown("P2Submit"))
 		{
+			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player2);
 		}
 		
-		if (Input.GetButtonDown("P3Submit"))
+		else if (Input.GetButtonDown("P3Submit"))
 		{
+			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player3);
 		}
 		
-		if (Input.GetButtonDown("P4Submit"))
+		else if (Input.GetButtonDown("P4Submit"))
 		{
+			_hasPlayerStarted = true;
 			LoadWaitingRoom(EnumPlayer.Player4);
 		}
 	}
@@ -42,7 +46,7 @@ public class TitleScreen : MonoBehaviour
 	private void LoadWaitingRoom(EnumPlayer enumPlayer)
 	{
 		GameManager.Instance.AddPlayer(enumPlayer);
-		_hasPlayerStarted = true;
+		
 		GameManager.Instance.LoadWaitingRoomScene("TitleScene");
 	}
 	
