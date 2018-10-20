@@ -54,6 +54,11 @@ namespace Game.Scripts
                 {
                     return false;
                 }
+                
+                if (item.GetOrigin() == EnumPlayer.None)
+                {
+                    return false;
+                }
             }
             
             

@@ -31,6 +31,8 @@
               <e p="GameTimer.cs" t="Include" />
               <e p="ITimer.cs" t="Include" />
               <e p="MapScreen.cs" t="Include" />
+              <e p="OverAllResult.cs" t="Include" />
+              <e p="OverallResultScreen.cs" t="Include" />
               <e p="ResultScreen.cs" t="Include" />
               <e p="SoundManager.cs" t="Include" />
               <e p="TimeController.cs" t="Include" />

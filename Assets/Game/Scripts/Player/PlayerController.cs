@@ -74,6 +74,25 @@ namespace Game.Player
             _character = new Character(_enumPlayer);
         }
 
+        private void Update()
+        {
+            if (_character.HasItem())
+            {
+                if (_character.CurrentItem().GetItemName() == "TreasureItem")
+                {
+                    GameManager.Instance.HasTreasure(_enumPlayer, true);
+                }
+                else
+                {
+                    GameManager.Instance.HasTreasure(_enumPlayer, false);
+                }
+            }
+            else
+            {
+                GameManager.Instance.HasTreasure(_enumPlayer, false);
+            }
+        }
+        
         private void FixedUpdate()
         {
             if (_isHit)
@@ -99,21 +118,7 @@ namespace Game.Player
           
             _animator.SetBool(AnimatorHasItem, _character.HasItem());
 
-            if (_character.HasItem())
-            {
-                if (_character.CurrentItem().GetItemName() == "TreasureItem")
-                {
-                    GameManager.Instance.HasTreasure(_enumPlayer, true);
-                }
-                else
-                {
-                    GameManager.Instance.HasTreasure(_enumPlayer, false);
-                }
-            }
-            else
-            {
-                GameManager.Instance.HasTreasure(_enumPlayer, false);
-            }
+          
          
             
             _isSpringJump = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _springLayerMask);
@@ -303,6 +308,7 @@ namespace Game.Player
                         {
                             return;
                         }
+                        
                         MapScreen.Instance.ScoreKill(item.GetOrigin());
                         Hit();
                         
