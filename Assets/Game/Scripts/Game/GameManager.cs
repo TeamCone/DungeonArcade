@@ -142,6 +142,10 @@ public class GameManager : MonoBehaviour
     {
         
         var json = PlayerPrefs.GetString("GameResults", "");
+        if (string.IsNullOrEmpty(json))
+        {
+            return new List<GameResult>();
+        }
         var gameResults = JsonUtility.FromJson<GameResults>(json);
         return gameResults.Results;
     }
