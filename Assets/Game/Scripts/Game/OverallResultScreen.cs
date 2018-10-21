@@ -19,9 +19,8 @@ public class OverallResultScreen : MonoBehaviour
 		
     void Start()
     {
-        //dummy
-//		SoundManager.Instance.PlayBgm("BgmVictory");
-//		SetWinner(GameManager.Instance.GetOverallWinner());
+		SoundManager.Instance.PlayBgm("BgmVictory");
+		SetWinner(GameManager.Instance.GetOverallWinner());
 		
 		
         TweenFacade.Move(_container, new Vector3(_container.transform.position.x,_container.transform.position.y + 1300,_container.transform.position.z), 3,
