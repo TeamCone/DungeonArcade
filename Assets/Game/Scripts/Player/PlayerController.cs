@@ -108,6 +108,7 @@ namespace Game.Player
             else
             {
                 _isGrounded = false;
+                _animator.SetTrigger(AnimatorJump);
             }
             
             _animator.SetBool(AnimatorIsGrounded, _isGrounded);
@@ -144,10 +145,10 @@ namespace Game.Player
             
             SoundManager.Instance.PlaySfx("SfxJump");
             _rigidbody2D.velocity = new Vector3(_rigidbody2D.velocity.x, _jumpHeight);
-            _animator.SetTrigger(AnimatorJump);
+           
         }
 
-        public void ThrowItem()
+        public async void ThrowItem()
         {
             if (_isHit)
             {
@@ -169,10 +170,18 @@ namespace Game.Player
                 return;
             }
             
+            _animator?.SetBool("IsThrowing", true);
             SoundManager.Instance.PlaySfx("SfxThrow");
-            _animator.SetTrigger(AnimatorThrow);
+            _animator?.SetTrigger(AnimatorThrow);
             _character.ThrowItem(_isFacingRight);
+            await StopThrowingAnimation();
 
+        }
+
+        private IEnumerator StopThrowingAnimation()
+        {
+            yield return new WaitForSeconds(0.1f);
+            _animator?.SetBool("IsThrowing", false);
         }
 
         public void MoveHorizontal(float value)
