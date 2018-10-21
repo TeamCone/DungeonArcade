@@ -220,9 +220,6 @@ public class GameManager : MonoBehaviour
         {
         }
         
-
-       
-        
     }
 
 
@@ -236,7 +233,6 @@ public class GameManager : MonoBehaviour
         var overAllResult = GetOverAllResult();
         overAllResult.AddWinner(enumPlayer);  
         SetOverAllResult(overAllResult);
-       
     }
 
     public void ClearOverAllWinner()
