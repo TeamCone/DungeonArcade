@@ -352,5 +352,11 @@ namespace Game.Player
             
         }
 
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+        }
     }
+    
+    
 }
