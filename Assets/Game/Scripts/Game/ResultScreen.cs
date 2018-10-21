@@ -15,38 +15,8 @@ public class ResultScreen : MonoBehaviour
 		//Check if someone has the idol
 		var isThereWinner = gameResults.Any(x => x.IsWinner);
 		if (isThereWinner == false)
-		{
-			// compare only if more than 1 player
-			if (gameResults.Count > 1)
-			{
-				// Check most kills amount and find players with most kills
-				var maxKills = gameResults.Max(g => g.Kills);
-				var playersWithMostKills = gameResults.Where(g => g.Kills == maxKills).ToList();
-				
-				//check if only one player has more kills
-				if (playersWithMostKills.Count == 1)
-				{
-					GameManager.Instance.AddWinner((EnumPlayer) playersWithMostKills[0].Player);
-				}
-				else
-				{
-					var minDeaths = playersWithMostKills.Min(p => p.Deaths);
-					var playersWithLeastDeaths = playersWithMostKills.Where(g => g.Deaths == minDeaths).ToList();
-
-					if (playersWithLeastDeaths.Count == 1)
-					{
-						GameManager.Instance.AddWinner((EnumPlayer) playersWithLeastDeaths[0].Player);
-					}
-					else
-					{
-						GameManager.Instance.AddWinner(EnumPlayer.None);
-					}
-				}
-			}
-			else
-			{				
-				GameManager.Instance.AddWinner(EnumPlayer.None);
-			}
+		{		
+			GameManager.Instance.AddWinner(EnumPlayer.None);
 		}
 		
 		foreach (var gameResult in gameResults)
