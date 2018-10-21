@@ -4,6 +4,7 @@
     {
         IDLE,
         MOVING,
-        PICKED
+        PICKED,
+	    DROPPED
     }
 }

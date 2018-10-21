@@ -112,13 +112,26 @@ public class ItemController : MonoBehaviour, IItem
 			Debug.Log("ITEM IS TREASURE");
 			SetState(EnumItemState.IDLE);
 			_origin = EnumPlayer.None;
+			return;
 		}
+		
+		Debug.Log("ITEM IS TREASURE");
+		SetState(EnumItemState.DROPPED);
+		_origin = EnumPlayer.None;
+		return;
+	}
+	
+	public void ThrowItem()
+	{
+		_transform.parent = null;
+
+		CreateRigidBody2D();
 	}
 
 	public void Throw(bool isFacingRight)
 	{
 		
-		RemoveItem();
+		ThrowItem();
 		_throwItem.Throw(isFacingRight);
 		SetState(EnumItemState.MOVING);
 	}
