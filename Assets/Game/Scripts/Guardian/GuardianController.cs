@@ -5,10 +5,12 @@ namespace Game.Player
 {
     public class GuardianController: MonoBehaviour
     {
+        
         private Rigidbody2D _rigidbody2D;
         private Transform _transform;
 
         [SerializeField] private Transform _guardianPathHolder;
+        [SerializeField] private float _speed;
         private List<Transform> _guardianPaths = new List<Transform>();
         
         
@@ -31,7 +33,7 @@ namespace Game.Player
 
         private void StartMovement()
         {
-            TweenFacade.LocalMove(_transform, GetRandomPath(),2,StartMovement,true);
+            TweenFacade.LocalMove(_transform, GetRandomPath(),_speed,StartMovement,true);
         }
 
         private Vector3 GetRandomPath()
