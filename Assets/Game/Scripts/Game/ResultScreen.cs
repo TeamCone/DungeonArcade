@@ -12,11 +12,10 @@ public class ResultScreen : MonoBehaviour
 	{
 		var gameResults = GameManager.Instance.GetGameResult();
 
-
+		//Check if someone has the idol
 		var isThereWinner = gameResults.Any(x => x.IsWinner);
-
 		if (isThereWinner == false)
-		{
+		{		
 			GameManager.Instance.AddWinner(EnumPlayer.None);
 		}
 		

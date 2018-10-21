@@ -156,6 +156,42 @@ public class GameManager : MonoBehaviour
 
     public void SubmitGameResult()
     {
+	    // compare only if more than 1 player
+	    if (_gameResults.Count > 1)
+	    {
+		    // Check most kills amount and find players with most kills
+		    var maxKills = _gameResults.Max(g => g.Kills);
+		    var playersWithMostKills = _gameResults.Where(g => g.Kills == maxKills).ToList();
+				
+		    //check if only one player has more kills
+		    if (playersWithMostKills.Count == 1)
+		    {
+			    //GameManager.Instance.AddWinner((EnumPlayer) playersWithMostKills[0].Player);
+			    for(var i = 0; i < _gameResults.Count; i++)
+			    {
+				    if (_gameResults[i].Player == playersWithMostKills[0].Player)
+				    {
+					    _gameResults[i].IsWinner = true;
+				    }
+			    }
+		    }
+		    else
+		    {
+			    var minDeaths = playersWithMostKills.Min(p => p.Deaths);
+			    var playersWithLeastDeaths = playersWithMostKills.Where(g => g.Deaths == minDeaths).ToList();
+
+			    if (playersWithLeastDeaths.Count == 1)
+			    {
+				    for(var i = 0; i < _gameResults.Count; i++)
+				    {
+					    if (_gameResults[i].Player == playersWithLeastDeaths[0].Player)
+					    {
+						    _gameResults[i].IsWinner = true;
+					    }
+				    }
+			    }
+		    }
+	    }
         SetGameResult(_gameResults);
     }
     public void ClearGameResult()
@@ -220,9 +256,6 @@ public class GameManager : MonoBehaviour
         {
         }
         
-
-       
-        
     }
 
 
@@ -236,7 +269,6 @@ public class GameManager : MonoBehaviour
         var overAllResult = GetOverAllResult();
         overAllResult.AddWinner(enumPlayer);  
         SetOverAllResult(overAllResult);
-       
     }
 
     public void ClearOverAllWinner()
