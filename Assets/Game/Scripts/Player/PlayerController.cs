@@ -293,6 +293,9 @@ namespace Game.Player
                 var item = other.gameObject.GetComponent<IItem>();
                 switch (item.GetState())
                 {
+	                
+	                case EnumItemState.DROPPED:
+
                     case EnumItemState.IDLE:
                         if (_isHit)
                         {
