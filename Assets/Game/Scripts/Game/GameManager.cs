@@ -156,6 +156,14 @@ public class GameManager : MonoBehaviour
 
     public void SubmitGameResult()
     {
+	    bool hasWinner = _gameResults.Any(g => g.IsWinner == true);
+
+	    if (hasWinner)
+	    {
+		    SetGameResult(_gameResults);
+		    return;
+	    }
+	    
 	    // compare only if more than 1 player
 	    if (_gameResults.Count > 1)
 	    {
