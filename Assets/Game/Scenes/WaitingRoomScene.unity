@@ -3199,7 +3199,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Get the golden idol in the center of the map
+  m_text: Get the golden idol at the center of the map
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cef5afb3d8f4042b29f5dbc0787a4dfe, type: 2}
   m_sharedMaterial: {fileID: 21258968287768964, guid: cef5afb3d8f4042b29f5dbc0787a4dfe,
@@ -3727,7 +3727,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Whoever got the idol when the timer runs out wins
+  m_text: Whoever has the idol when the timer runs out wins
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cef5afb3d8f4042b29f5dbc0787a4dfe, type: 2}
   m_sharedMaterial: {fileID: 21258968287768964, guid: cef5afb3d8f4042b29f5dbc0787a4dfe,
